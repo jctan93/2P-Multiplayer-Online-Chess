@@ -10,3 +10,5 @@ Features:
 
 > To run this without hosting it on a server, enter "node index.js" in a command line window opened in this directory
 > Next. navigate to localhost:3000 in your browser to reach the login page
+
+An instance of this game is available at https://twoplayer-online-chess.herokuapp.com/
