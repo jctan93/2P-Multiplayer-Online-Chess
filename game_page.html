@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="public/css/main.css">
+		<script type="text/javascript" src="public/js/jquery-3.1.0.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="public/js/game_page.js"></script>
+		<title>Chess</title>
+	</head>
+
+	<header>
+			<div class="header-container">
+				<div class="header-text">CHESS</div>
+				<nav class="nav">
+				
+					<ul>
+						<li>
+							<div class="lobby-button">Lobbies</div>	
+						</li>
+					
+						<li>
+							<div class="chat-button">Chat</div>	
+						</li>
+						
+						<li>
+							<div id="logout-button"  class="logout-button">Logout</div>
+						</li>
+
+					</ul>
+				</nav>
+			</div>
+	</header>
+	
+	<body >
+		
+		<div class="popup-bck" id="popup-bck"></div>
+		
+		<div class="popup-chat" id="popup-chat">
+			<div class="tab-area" id="tab-area">
+				<span class = "global-tab choose-chat">Global</span><!--
+			 --><span class = "private-tab choose-chat">Private</span>
+			</div>
+			
+			<span class = "chat-close">❌</span>
+			
+			<div id="private">
+				<div class="append-chat-here" id="append-chat-here">
+				</div>
+				
+				<form action="" name="chat-form">
+					<input id="chat-input" autocomplete="off" /><button class="chat-send-button">Send</button>
+				</form>
+			</div>
+			
+			<div id="global">
+				<div class="append-chat-here-global" id="append-chat-here-global">
+				</div>
+				
+				<form action="" name="chat-form-global" id="global-chat-form">
+					<input id="chat-input-global" autocomplete="off" /><button class="chat-send-button">Send</button>
+				</form>
+			</div>
+		</div>
+		
+		<div class="popup-loading" id="popup-loading">
+			<div id="loader"></div>
+		</div>
+
+		
+		
+		<div>
+			<div class="container">
+				<div id="player-one">Player One: </div><!--
+				--><div id="player-two">Player Two: </div>
+			</div>
+		</div>
+	
+		<div class="grey-bg">
+			<div class="container ">
+				<div id="player">Current Player: </div>
+			
+				<div class="col-one-third">
+					<div id="confirm_button" class="button">Confirm</div>
+				</div><!--
+				--><div class="col-one-third">
+					<div id="cancel_button" class="button">Cancel</div>
+				</div><!--
+				--><div class="col-one-third">
+					<div id="info_button" class="button info">Info</div>
+				</div>
+			</div>
+		</div>	
+
+		<div class="alt-text-input">
+			
+			<input type="text" name="start-square" id="start-square" placeholder="Start Square">
+			<p class="inbetween">to</p>
+			<input type="text" name="destination-square" id="destination-square" placeholder="Destination Square">
+			<!--
+			<textarea id="start-square" placeholder="Start Square"></textarea>
+			<textarea id="destination-square" placeholder="Destination Square"></textarea>
+			-->
+			<p class="inbetween">&#10148</p>
+			<div class="move-button confirm">Move</div>
+		</div>
+		
+		<div id="board" class="board">
+		
+			<div class="label_top top-left"></div>
+			<div class="label_top no-left-border">A</div>
+			<div class="label_top">B</div>
+			<div class="label_top">C</div>
+			<div class="label_top">D</div>
+			<div class="label_top">E</div>
+			<div class="label_top">F</div>
+			<div class="label_top">G</div>
+			<div class="label_top top-right">H</div>
+		
+			<div class="label_left">8</div>
+			<div class="white" id="8A">&#9820</div>
+			<div class="black" id="8B">&#9822</div>
+			<div class="white" id="8C">&#9821</div>
+			<div class="black" id="8D">&#9819</div>
+			<div class="white" id="8E">&#9818</div>
+			<div class="black" id="8F">&#9821</div>
+			<div class="white" id="8G">&#9822</div>
+			<div class="black" id="8H">&#9820</div>
+			
+			<div class="label_left">7</div>
+			<div class="black" id="7A">&#9823</div>
+			<div class="white" id="7B">&#9823</div>
+			<div class="black" id="7C">&#9823</div>
+			<div class="white" id="7D">&#9823</div>
+			<div class="black" id="7E">&#9823</div>
+			<div class="white" id="7F">&#9823</div>
+			<div class="black" id="7G">&#9823</div>
+			<div class="white" id="7H">&#9823</div>
+			
+			<div class="label_left">6</div>
+			<div class="white" id="6A"></div>
+			<div class="black" id="6B">&#9817</div>
+			<div class="white" id="6C">&#9817</div>
+			<div class="black" id="6D">&#9823</div>
+			<div class="white" id="6E"></div>
+			<div class="black" id="6F"></div>
+			<div class="white" id="6G"></div>
+			<div class="black" id="6H"></div>
+			
+			<div class="label_left">5</div>
+			<div class="black" id="5A"></div>
+			<div class="white" id="5B"></div>
+			<div class="black" id="5C">&#9812</div>
+			<div class="white" id="5D">&#9818</div>
+			<div class="black" id="5E"></div>
+			<div class="white" id="5F">♗</div>
+			<div class="black" id="5G"></div>
+			<div class="white" id="5H"></div>
+			
+			<div class="label_left">4</div>
+			<div class="white" id="4A"></div>
+			<div class="black" id="4B"></div>
+			<div class="white" id="4C">&#9820</div>
+			<div class="black" id="4D">♝</div>
+			<div class="white" id="4E">♘</div>
+			<div class="black" id="4F">♛</div>
+			<div class="white" id="4G">♕</div>
+			<div class="black" id="4H"></div>
+			
+			<div class="label_left">3</div>
+			<div class="black" id="3A"></div>
+			<div class="white" id="3B"></div>
+			<div class="black" id="3C"></div>
+			<div class="white" id="3D"></div>
+			<div class="black" id="3E"></div>
+			<div class="white" id="3F"></div>
+			<div class="black" id="3G"></div>
+			<div class="white" id="3H"></div>
+			
+			<div class="label_left">2</div>
+			<div class="white" id="2A">&#9817</div>
+			<div class="black" id="2B">&#9817</div>
+			<div class="white" id="2C">&#9817</div>
+			<div class="black" id="2D">&#9817</div>
+			<div class="white" id="2E">&#9817</div>
+			<div class="black" id="2F">&#9817</div>
+			<div class="white" id="2G">&#9817</div>
+			<div class="black" id="2H">&#9817</div>
+			
+			<div class="label_left bottom-left">1</div>
+			<div class="black" id="1A">&#9814</div>
+			<div class="white" id="1B">&#9816</div>
+			<div class="black" id="1C">&#9815</div>
+			<div class="white" id="1D">&#9813</div>
+			<div class="black" id="1E">&#9812</div>
+			<div class="white" id="1F">&#9815</div>
+			<div class="black" id="1G">&#9816</div>
+			<div class="white bottom-right" id="1H">&#9814</div>
+		</div>
+		
+		<div id="pop-up" class="pop-up"> 
+		</div>
+		
+		<div id="pop_up" class="pop_up">
+			<div class="container-two">
+				<div class="table-header">
+					<span class = "close">❌</span>
+				</div><!--
+				
+				--><div class="table-nav"><!--
+					--><ul><!--
+							--><li class="col-one-third" id="info-tab">Info</li><!--
+							--><li class="col-one-third" id="pieces-captured-tab">Pieces Captured</li><!--
+							--><li class="col-one-third" id="log-tab">Logs</li><!--
+					--></ul><!--
+				--></div><!--
+				
+				--><div class = "table-content">
+					<div id="pop_up_info">
+							<div id="time_start"></div>
+							<div id="time"></div>
+							<div id="time_elapsed"></div>
+							
+							<br>
+							
+							
+							<br>
+							<div id="selected_unit">Selected Unit: </div>
+							<div>Possible Moves for this Unit: </div>
+							<div id="possible_moves"></div>
+							<div id="move_to">Move To: </div>
+							<br>
+							<div id="game_message" >Game Message: </div>
+							<div id="system_message" >System Message: </div>
+					</div><!--
+					--><div id="pieces-captured">
+						<div class="col-half">
+							<table>
+								<tr>
+									<th>White Pieces</th>
+									<th>Pieces Captured</th>
+								</tr>
+								<tr>
+									<td>White Pawn: ♙</td>
+									<td id="white_pawn_no">0</td>
+								</tr>
+								<tr>
+									<td>White Rook: ♖</td>
+									<td id="white_rook_no">0</td>
+								</tr>
+								<tr>
+									<td>White Knight: ♘</td>
+									<td id="white_knight_no">0</td>
+								</tr>
+								<tr>
+									<td>White Bishop: ♗</td>
+									<td id="white_bishop_no">0</td>
+								</tr>
+								<tr>
+									<td>White Queen: ♕</td>
+									<td id="white_queen_no">0</td>
+								</tr>
+								<tr>
+									<td>White King: ♔</td>
+									<td id="white_king_no">0</td>
+								</tr>					
+							</table>
+						</div><!--
+					--><div class="col-half">
+							<table>
+								<tr>
+									<th>Black Pieces</th>
+									<th>Pieces Captured</th>
+								</tr>
+								<tr>
+									<td>Black Pawn: ♟</td>
+									<td id="black_pawn_no">0</td>
+								</tr>
+								<tr>
+									<td>Black Rook: ♜</td>
+									<td id="black_rook_no">0</td>
+								</tr>
+								<tr>
+									<td>Black Knight: ♞</td>
+									<td id="black_knight_no">0</td>
+								</tr>
+								<tr>
+									<td>Black Bishop: ♝</td>
+									<td id="black_bishop_no">0</td>
+								</tr>
+								<tr>
+									<td>Black Queen: ♛</td>
+									<td id="black_queen_no">0</td>
+								</tr>
+								<tr>
+									<td>Black King: ♚</td>
+									<td id="black_king_no">0</td>
+								</tr>					
+							</table>
+						</div>
+					</div><!--
+					--><div id="logs">
+						<div id="log-area">
+						</div>
+					</div><!--
+				--></div><!--
+				--><div class="table-footer"> 
+				</div>
+			</div>
+		</div>
+		
+		</div>
+	
+	
+	</body>
+
+</html>

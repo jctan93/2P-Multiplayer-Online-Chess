@@ -1,0 +1,95 @@
+		<div class="container" id="session-display">
+			<br>
+			<div class="in-between">
+				<b>Create a New Lobby</b>
+			</div>
+		
+			<div class="new-game-button" id="new-game">New Game</div>
+			
+			<div class="in-between">
+				<b>Or Join an Existing Session</b>
+			</div>
+			
+			<div class="session">
+				<nav class="lobby-nav">
+				<ul>
+					<li class="col-one-third">
+						<div class="player-one">Dummy1</div>	
+					</li><!--				
+					--><li class="col-one-third">
+						<div class="player-two">Dummy2</div>
+					</li><!--				
+					--><li class="col-one-third">
+						<div class="sessionID">SessionID</div>
+					</li>
+				</ul>
+			</nav>
+			</div>
+			
+			<div class="session">
+				<nav class="lobby-nav">
+				<ul>
+					<li class="col-one-third">
+						<div class="player-one">Dummy1</div>	
+					</li><!--				
+					--><li class="col-one-third">
+						<div class="player-two">Dummy2</div>
+					</li><!--				
+					--><li class="col-one-third">
+						<div class="sessionID">SessionID</div>
+					</li>
+				</ul>
+			</nav>
+			</div>
+			
+			<div class="session">
+				<nav class="lobby-nav">
+				<ul>
+					<li class="col-one-third">
+						<div class="player-one">Dummy1</div>	
+					</li><!--				
+					--><li class="col-one-third">
+						<div class="player-two">Dummy2</div>
+					</li><!--				
+					--><li class="col-one-third">
+						<div class="sessionID">SessionID</div>
+					</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<body>
+		<div class="lobby-choose-nav">
+			<ul>
+				<li class="game-selection" id="new-game-selection">
+					<div >New Game</div>
+				</li><!--				
+				--><li class="game-selection" id="existing-lobby-selection">
+					<div >Existing Lobbies</div>
+				</li>
+			</ul>
+		</div>
+		<div class="choose-content">
+			<div class="container">
+				<div id="button-tab">
+					<div class="new-game-button" id="new-game">New Game</div>
+				</div>
+				
+				<div id="lobby-tab">
+				</div>
+			</div>
+		</div>
+		
+	</body>

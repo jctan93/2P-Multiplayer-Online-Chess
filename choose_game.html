@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="public/css/main.css">
+		<script type="text/javascript" src="public/js/jquery-3.1.0.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="public/js/choose_game.js"></script>
+		<title>Lobbies</title>
+	</head>
+
+	<header>
+		<div class="header-container">
+			<div class="header-text">Lobbies</div>
+			<nav class="nav">
+				<ul>
+					<li>
+						<div id="logout-button"  class="logout-button">Logout</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	
+	<body>
+		<div class="container">
+			<div class="lobby-choose-nav">
+				<ul>
+					<li id="new-game-button">New Game</li><!--
+					--><li id="lobby-button">Lobbies</li><!--
+					--><li id="global-chat-button">Global Chat</li>
+				</ul>
+			</div>
+			<div class="choose-content grey-bg">
+				<div id="button-tab">
+					<div class="new-game-button" id="new-game">New Game</div>
+				</div>
+				
+				<div id="lobby-tab">
+					<div id="lobby-header">
+						<ul>
+							<li class="col-one-third">Owner</li><!--
+							--><li class="col-one-third">Player Two</li><!--
+							--><li class="col-one-third">Lobby ID</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div id="chat-tab">
+					<div class="append-chat-here-global" id="append-chat-here-global">
+					</div>
+					
+					<form action="" name="chat-form">
+						<input id="chat-input" autocomplete="off" /><button class="chat-send-button">Send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="popup-bck"></div>
+		
+		<div class="popup-loading">
+			<div id="loader"></div>
+		</div>
+		
+		<div class="popup-content-box round-edges">
+			<div class="container">
+				<span class = "close-two">❌</span>
+				<p>Is This The Lobby You Want to Join</p>
+				
+				<div id="append-here"></div>
+				
+				<div class="col-one-third">
+					<div id="confirm_button_two" class="confirm_button_two round-edges">Confirm</div>
+				</div><!--
+				--><div class="col-one-third">
+					<div id="spectate_button" class="spectate_button round-edges">Spectate</div>
+				</div><!--
+				--><div class="col-one-third">
+					<div id="cancel_button_two" class="cancel_button_two round-edges">Cancel</div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+
+</html>

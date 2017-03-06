@@ -1,0 +1,273 @@
+1125253907:?<header>
+		<div class="header-container">
+			<div class="header-text">TEST</div>
+			<nav class="nav">
+			
+				<ul>
+					<li>
+						<div class="restore-button">Restore</div>	
+					</li>
+										
+					<li>
+						<div class="logout-save-button">Logout &amp; Save</div>
+					</li>
+					
+					<li>
+						<div class="logout-button">Logout</div>
+					</li>
+
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	
+	<div>
+		<div class="container">
+			<div id="player-one">Player One: admin</div><!--
+			--><div id="player-two">Player Two: user3</div>
+		</div>
+	</div>
+	
+	<div class="grey-bg">
+		<div class="container">
+			<div id="player" style="color: rgb(0, 0, 0); background: rgb(255, 255, 255);">Current Player: <b>White</b></div>
+		
+			<div class="col-one-third">
+				<div id="confirm_button" class="button">Confirm</div>
+			</div><!--
+			--><div class="col-one-third">
+				<div id="cancel_button" class="button">Cancel</div>
+			</div><!--
+			--><div class="col-one-third">
+				<div id="info_button" class="button info">Info</div>
+			</div>
+		</div>
+	</div>	
+
+		<div class="alt-text-input">
+			
+			<input type="text" name="start-square" id="start-square" placeholder="Start Square">
+			<p class="inbetween">to</p>
+			<input type="text" name="destination-square" id="destination-square" placeholder="Destination Square">
+			<!--
+			<textarea id="start-square" placeholder="Start Square"></textarea>
+			<textarea id="destination-square" placeholder="Destination Square"></textarea>
+			-->
+			<p class="inbetween">➤</p>
+			<div class="move-button confirm">Move</div>
+		</div>
+		
+		<div id="board" class="board">
+		
+			<div class="label_top top-left"></div>
+			<div class="label_top no-left-border">A</div>
+			<div class="label_top">B</div>
+			<div class="label_top">C</div>
+			<div class="label_top">D</div>
+			<div class="label_top">E</div>
+			<div class="label_top">F</div>
+			<div class="label_top">G</div>
+			<div class="label_top top-right">H</div>
+		
+			<div class="label_left">8</div>
+			<div class="white BLACK_PIECE" id="8A">♜</div>
+			<div class="black BLACK_PIECE" id="8B">♞</div>
+			<div class="white BLACK_PIECE" id="8C">♝</div>
+			<div class="black BLACK_PIECE" id="8D">♛</div>
+			<div class="white BLACK_PIECE" id="8E">♚</div>
+			<div class="black BLACK_PIECE" id="8F">♝</div>
+			<div class="white BLACK_PIECE" id="8G">♞</div>
+			<div class="black BLACK_PIECE" id="8H">♜</div>
+			
+			<div class="label_left">7</div>
+			<div class="black BLACK_PIECE" id="7A">♟</div>
+			<div class="white BLACK_PIECE" id="7B">♟</div>
+			<div class="black BLACK_PIECE" id="7C">♟</div>
+			<div class="white BLACK_PIECE" id="7D">♟</div>
+			<div class="black BLACK_PIECE" id="7E">♟</div>
+			<div class="white BLACK_PIECE" id="7F">♟</div>
+			<div class="black BLACK_PIECE" id="7G">♟</div>
+			<div class="white BLACK_PIECE" id="7H">♟</div>
+			
+			<div class="label_left">6</div>
+			<div class="white" id="6A"></div>
+			<div class="black WHITE_PIECE" id="6B">♙</div>
+			<div class="white WHITE_PIECE" id="6C">♙</div>
+			<div class="black BLACK_PIECE" id="6D">♘</div>
+			<div class="white" id="6E"></div>
+			<div class="black" id="6F"></div>
+			<div class="white" id="6G"></div>
+			<div class="black" id="6H"></div>
+			
+			<div class="label_left">5</div>
+			<div class="black" id="5A"></div>
+			<div class="white" id="5B"></div>
+			<div class="black WHITE_PIECE" id="5C">♔</div>
+			<div class="white BLACK_PIECE" id="5D">♚</div>
+			<div class="black" id="5E"></div>
+			<div class="white WHITE_PIECE" id="5F">♗</div>
+			<div class="black" id="5G"></div>
+			<div class="white" id="5H"></div>
+			
+			<div class="label_left">4</div>
+			<div class="white" id="4A"></div>
+			<div class="black" id="4B"></div>
+			<div class="white BLACK_PIECE" id="4C">♜</div>
+			<div class="black BLACK_PIECE" id="4D">♝</div>
+			<div class="white WHITE_PIECE" id="4E"></div>
+			<div class="black BLACK_PIECE" id="4F">♛</div>
+			<div class="white WHITE_PIECE" id="4G">♕</div>
+			<div class="black" id="4H"></div>
+			
+			<div class="label_left">3</div>
+			<div class="black" id="3A"></div>
+			<div class="white" id="3B"></div>
+			<div class="black" id="3C"></div>
+			<div class="white" id="3D"></div>
+			<div class="black" id="3E"></div>
+			<div class="white" id="3F"></div>
+			<div class="black" id="3G"></div>
+			<div class="white" id="3H"></div>
+			
+			<div class="label_left">2</div>
+			<div class="white WHITE_PIECE" id="2A">♙</div>
+			<div class="black WHITE_PIECE" id="2B">♙</div>
+			<div class="white WHITE_PIECE" id="2C">♙</div>
+			<div class="black WHITE_PIECE" id="2D">♙</div>
+			<div class="white WHITE_PIECE" id="2E">♙</div>
+			<div class="black WHITE_PIECE" id="2F">♙</div>
+			<div class="white WHITE_PIECE" id="2G">♙</div>
+			<div class="black WHITE_PIECE" id="2H">♙</div>
+			
+			<div class="label_left bottom-left">1</div>
+			<div class="black WHITE_PIECE" id="1A">♖</div>
+			<div class="white WHITE_PIECE" id="1B">♘</div>
+			<div class="black WHITE_PIECE" id="1C">♗</div>
+			<div class="white WHITE_PIECE" id="1D">♕</div>
+			<div class="black WHITE_PIECE" id="1E">♔</div>
+			<div class="white WHITE_PIECE" id="1F">♗</div>
+			<div class="black WHITE_PIECE" id="1G">♘</div>
+			<div class="white bottom-right WHITE_PIECE" id="1H">♖</div>
+		</div>
+			
+
+		
+		
+		<div id="pop_up" class="pop_up">
+			<div class="container-two">
+				<div class="table-header">
+					<span class="close">x</span>
+				</div>
+				
+				<div class="table-nav">
+					<ul>
+						<li class="col-one-third" id="info-tab">Info</li><!--
+					
+					--><li class="col-one-third" id="pieces-captured-tab">Pieces Captured</li><!--
+					
+					--><li class="col-one-third" id="log-tab">Logs</li>
+					</ul>
+				</div>
+				
+				<div class="table-content">
+					<div id="pop_up_info">
+							<div id="time_start"><div id="time_start"> Start Time: 15:54:27</div></div>
+							<div id="time"><div id="time"> Current Time is: 15:54:29</div></div>
+							<div id="time_elapsed"><div id="time_elapsed"> Elapsed Time Since You Started Playing/Loaded the page: 0:00:02</div></div>
+							
+							<br>
+							
+							
+							<br>
+							<div id="selected_unit">Selected Unit: </div>
+							<div>Possible Moves for this Unit: </div>
+							<div id="possible_moves"></div>
+							<div id="move_to">Move To: </div>
+							<br>
+							<div id="game_message">Game Message: ♘ from 4E captures ♟ at 6D</div>
+							<div id="system_message">System Message: </div>
+					</div>
+					
+					<div id="pieces-captured">
+						<div class="col-half black-text">
+							<table>
+								<tbody><tr>
+									<th>White Pieces</th>
+									<th>Pieces Captured</th>
+								</tr>
+								<tr>
+									<td>White Pawn: ♙</td>
+									<td id="white_pawn_no">0</td>
+								</tr>
+								<tr>
+									<td>White Rook: ♖</td>
+									<td id="white_rook_no">0</td>
+								</tr>
+								<tr>
+									<td>White Knight: ♘</td>
+									<td id="white_knight_no">0</td>
+								</tr>
+								<tr>
+									<td>White Bishop: ♗</td>
+									<td id="white_bishop_no">0</td>
+								</tr>
+								<tr>
+									<td>White Queen: ♕</td>
+									<td id="white_queen_no">0</td>
+								</tr>
+								<tr>
+									<td>White King: ♔</td>
+									<td id="white_king_no">0</td>
+								</tr>					
+							</tbody></table>
+						</div><!--
+						
+					--><div class="col-half black-text">
+							<table>
+								<tbody><tr>
+									<th>Black Pieces</th>
+									<th>Pieces Captured</th>
+								</tr>
+								<tr>
+									<td>Black Pawn: ♟</td>
+									<td id="black_pawn_no">1</td>
+								</tr>
+								<tr>
+									<td>Black Rook: ♜</td>
+									<td id="black_rook_no">0</td>
+								</tr>
+								<tr>
+									<td>Black Knight: ♞</td>
+									<td id="black_knight_no">0</td>
+								</tr>
+								<tr>
+									<td>Black Bishop: ♝</td>
+									<td id="black_bishop_no">0</td>
+								</tr>
+								<tr>
+									<td>Black Queen: ♛</td>
+									<td id="black_queen_no">0</td>
+								</tr>
+								<tr>
+									<td>Black King: ♚</td>
+									<td id="black_king_no">0</td>
+								</tr>					
+							</tbody></table>
+						</div>
+					</div>
+					
+					<div id="logs">
+
+						<div id="log-area">
+						♘ FROM 4E CAPTURES ♟ AT 6D<br></div>
+						
+					</div>
+					
+				</div>
+				<!--FOOTER-->
+				<div class="table-footer"> 
+				</div>
+			</div>
+		</div>
+	
