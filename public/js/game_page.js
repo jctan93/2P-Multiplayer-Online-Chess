@@ -818,7 +818,7 @@ $(document).ready(function(){
 		
 		console.log("Clearing cookies");
 		document.cookie = "login_cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-		window.location="/login.html";
+		window.location="/login";
 	});
 	
 	//Adds the WHITE_PIECE/BLACK_PIECE class to squares that have chess pieces o
