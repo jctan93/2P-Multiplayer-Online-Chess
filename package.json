@@ -1,0 +1,29 @@
+{
+  "name": "2p-online-chess",
+  "version": "1.0.0",
+  "description": "Two player online chess game made with javascript/node.js",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.10.2",
+    "mysql": "^2.12.0",
+    "password-hash-and-salt": "^0.1.4",
+    "socket.io": "^1.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jctan93/2P-Multiplayer-Online-Chess.git"
+  },
+  "author": "jctan93",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jctan93/2P-Multiplayer-Online-Chess/issues"
+  },
+  "homepage": "https://github.com/jctan93/2P-Multiplayer-Online-Chess#readme"
+}
