@@ -7,3 +7,6 @@ Features:
 - Lobby selection
 - Global and private chat
 - Spectate function available
+
+> To run this without hosting it on a server, enter "node index.js" in a command line window opened in this directory
+> Next. navigate to localhost:3000 in your browser to reach the login page
