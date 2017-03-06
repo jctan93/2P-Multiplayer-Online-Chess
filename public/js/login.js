@@ -127,7 +127,7 @@ $(document).ready(function(){
 			$("#system-message").css("background", "#7cd600");
 			
 			//Refers to the main page
-			window.location.replace("/choose_game.html");
+			window.location.replace("/choose");
 			//window.location="/game_page.html";
 		}
 		else
