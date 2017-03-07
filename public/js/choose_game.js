@@ -463,6 +463,19 @@ $(document).ready(function(){
 		$(".popup-bck").css("display", "none");
 		$(".popup-loading").css("display", "none");
 	   
+	   
+		$("#new-game-button").css("background", "");
+		$("#new-game-button").css("color", "#000");
+		$("#new-game-button").css("border-bottom", "1px solid #000");
+		
+		$("#lobby-button").css("background", "#333333");
+		$("#lobby-button").css("color", "#fff");
+		$("#lobby-button").css("border-bottom", "1px solid #333333");
+		
+		$("#global-chat-button").css("background", "");
+		$("#global-chat-button").css("color", "#000");
+		$("#global-chat-button").css("border-bottom", "1px solid #000");
+		
 		$("#lobby-tab").css("display", "block");
 		$("#button-tab").css("display", "none");
 	});

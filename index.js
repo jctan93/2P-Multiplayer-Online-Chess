@@ -348,7 +348,7 @@ io.on('connection', function(socket){
 			console.log("Cookie doesn't Exist");
 			throw err;
 		  }
-		  else
+		  else if(rows.length != 0)
 		  {
 			console.log('Sending cookie info to: ' + msg);
 			io.sockets.in(msg).emit('get login cookie', rows);
@@ -1049,7 +1049,7 @@ io.on('connection', function(socket){
 			console.log("Login Cookie doesn't Exist");
 			throw err;
 		  }
-		  else
+		  else if(rows.length != 0)
 		  {
 			  var Player_One = (rows[0].Cookie).split(":")[0];
 			  var Player_Two = "Waiting for P2";
