@@ -373,7 +373,7 @@ io.on('connection', function(socket){
 			//throw err;
 		  }
 
-		  else
+		  else if(rows.length != 0)
 		  {
 			var verify = saltHashPasswordWithSalt(split_string[4], rows[0].Salt);
 			//console.log('Data received from Db:\n');
@@ -474,6 +474,13 @@ io.on('connection', function(socket){
 				//io.emit("login confirmation", "no");
 				io.sockets.in(split_string[2]).emit("login confirmation", "no");
 			}
+		  }
+		  
+		  else
+		  {
+				console.log("ACCESS DENIED");
+				//io.emit("login confirmation", "no");
+				io.sockets.in(split_string[2]).emit("login confirmation", "no");
 		  }
 		});
 	});
