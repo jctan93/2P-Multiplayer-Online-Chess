@@ -643,11 +643,19 @@ header{
 
 .lobby-nav{
 	display: block;
+	
 }
 
 .lobby-nav li{
 	display: inline-block;
 	cursor: pointer;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.lobby-nav li .sessionID{
+	text-align: left;
 }
 
 .lobby-choose-nav li{
