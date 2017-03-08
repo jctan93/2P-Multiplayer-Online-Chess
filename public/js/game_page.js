@@ -29,6 +29,7 @@ var user_logged_in;
 var one = 1;
 var username;
 
+
 $(document).ready(function(){
 	$(".popup-bck").css("display","block");
 	$(".popup-loading").css("display","block");
@@ -848,135 +849,82 @@ $(document).ready(function(){
 		
 			if(!checkmate)
 			{
-				if(x)
+				if(	(current_player == 0 && username === player_one) || (current_player == 1 && username === player_two)	)
 				{
-					console.log("HELLO FREND");
-				}
-				//clicked = true;
-				//alert("Current player is : " + current_player);
-				
-				selected_unit = $(this).text();
-				
-				var move_squares = ($("#possible_moves").text()).split(" ");
-
-				clicked_square = $(this).attr('id');
-				
-				socket.emit('update clicked square', (getCookie("session_details").concat(":")).concat(current_user.concat(":").concat(clicked_square)));
-				
-				var clicked_possible_move = false;
-				
-				for(var i  = 0; i < move_squares.length; i++)
-				{
-					if(move_squares[i])
-					{
-						if(move_squares[i] == clicked_square)
-						{
-							console.log("HIT A MOVEBOX!");
-							clicked_possible_move = true;
-							destination_square = move_squares[i];
-							
-							//Clears previous move selection if any
-							remove_highlights("replace", "");
-							
-							$( "#".concat(destination_square) ).addClass("green_highlight" );
-							$( "#".concat(destination_square) ).removeClass("red_highlight" );
-							
-							document.getElementById('move_to').innerHTML = 'Move To: <b>' + move_squares[i] + "</b>";
-							
-							$("#confirm_button").addClass("confirm" );
-							
-							
-							
-							break;
-						}
-						console.log("ELSE EMPTY SQUARE: " + move_squares[i]);
-					}
+					//clicked = true;
+					//alert("Current player is : " + current_player);
 					
-				}
-				
-				$("#cancel_button").addClass("cancel" );
-				
-				
-				if(!clicked_possible_move)
-				{
-					console.log("ENTERS !CLICKED POSSIBLE MOVE");
-					//Removes blue highlight for previously selected square
-					remove_highlights("blue", move_squares);
+					selected_unit = $(this).text();
 					
-					remove_highlights("green", "");
-					document.getElementById('move_to').innerHTML = 'Move To: ';
-					destination_square = "";
-				
-					//Modify the selected unit section to display the unit selected
-					//If WHITE
-					if (selected_unit == String.fromCharCode(9812) || selected_unit== String.fromCharCode(9813) || selected_unit == String.fromCharCode(9814)|| selected_unit == String.fromCharCode(9815) || selected_unit == String.fromCharCode(9816) || selected_unit == String.fromCharCode(9817))
+					var move_squares = ($("#possible_moves").text()).split(" ");
+
+					clicked_square = $(this).attr('id');
+					
+
+					socket.emit('update clicked square', (getCookie("session_details").concat(":")).concat(current_user.concat(":").concat(clicked_square)));
+					
+					
+					var clicked_possible_move = false;
+					
+					for(var i  = 0; i < move_squares.length; i++)
 					{
-						if(current_player == 0)
+						if(move_squares[i])
 						{
-							document.getElementById('selected_unit').innerHTML = 'Selected Unit: (WHITE) <b>' + selected_unit +  "</b>";
-							unit_is_selected = true;
-							origin_square = clicked_square;
-						}
-						//If the player selects a unit of the wrong color
-						else
-						{
-							remove_highlights("all", "");
-							
-							document.getElementById("game_message").innerHTML = "Game Message: CURRENT PLAYER IS THE BLACK PLAYER YOU MUST CHOOSE A BLACK UNIT TO MOVE";
-
-							$("#game_message").addClass("blue_highlight");
-							
-							
-							document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
-							console.log("Possible Moves before clearing: " + ($("#possible_moves").text()));
-							console.log("CLEARING POSSIBLE MOVES!");
-							document.getElementById('possible_moves').innerHTML = '';
-							console.log("Possible Moves after clearing: " + ($("#possible_moves").text()));
-							unit_is_selected = false;
-							selected_unit = "";
-
-							remove_highlights("red", move_squares);		
-
-										$(".pop_up").css("display", "block");
-										$("#pieces-captured").css("display", "none");
-										$("#logs").css("display", "none");
-										$("#pop_up_info").css("display", "block");
-										
-										//Adds border + BG color to selected tab and removes border + BG color from the other tabs
-										$("#info-tab").css("border-bottom", "3px solid #fff");
-										$("#info-tab").css("color", "#294C72");
-										$("#info-tab").css("background", "#fff");
-										$("#info-tab").css("font-weight", "bold");
-										
-										$("#pieces-captured-tab").css("border-bottom", "");
-										$("#pieces-captured-tab").css("color", "#fff");
-										$("#pieces-captured-tab").css("background", "");
-										$("#pieces-captured-tab").css("font-weight", "");
-										
-										$("#log-tab").css("background","");
-										$("#log-tab").css("background","");
-										$("#log-tab").css("color","#fff");
-										$("#log-tab").css("font-weight","");
-										$("#log-tab").css("border-bottom","none");
-						}
-					}
-					else
-					{
-						//If BLACK
-						if (selected_unit != "")
-						{
-							if(current_player == 1)
+							if(move_squares[i] == clicked_square)
 							{
-								document.getElementById('selected_unit').innerHTML = 'Selected Unit: (BLACK)' + selected_unit;
-								origin_square = clicked_square;
+								console.log("HIT A MOVEBOX!");
+								clicked_possible_move = true;
+								destination_square = move_squares[i];
+								
+								//Clears previous move selection if any
+								remove_highlights("replace", "");
+								
+								$( "#".concat(destination_square) ).addClass("green_highlight" );
+								$( "#".concat(destination_square) ).removeClass("red_highlight" );
+								
+								document.getElementById('move_to').innerHTML = 'Move To: <b>' + move_squares[i] + "</b>";
+								
+								$("#confirm_button").addClass("confirm" );
+								
+								
+								
+								break;
+							}
+							console.log("ELSE EMPTY SQUARE: " + move_squares[i]);
+						}
+						
+					}
+					
+					$("#cancel_button").addClass("cancel" );
+					
+					
+					if(!clicked_possible_move)
+					{
+						console.log("ENTERS !CLICKED POSSIBLE MOVE");
+						//Removes blue highlight for previously selected square
+						remove_highlights("blue", move_squares);
+						
+						remove_highlights("green", "");
+						document.getElementById('move_to').innerHTML = 'Move To: ';
+						destination_square = "";
+					
+						//Modify the selected unit section to display the unit selected
+						//If WHITE
+						if (selected_unit == String.fromCharCode(9812) || selected_unit== String.fromCharCode(9813) || selected_unit == String.fromCharCode(9814)|| selected_unit == String.fromCharCode(9815) || selected_unit == String.fromCharCode(9816) || selected_unit == String.fromCharCode(9817))
+						{
+							if(current_player == 0)
+							{
+								document.getElementById('selected_unit').innerHTML = 'Selected Unit: (WHITE) <b>' + selected_unit +  "</b>";
 								unit_is_selected = true;
+								origin_square = clicked_square;
 							}
 							//If the player selects a unit of the wrong color
 							else
 							{
 								remove_highlights("all", "");
 								
-								document.getElementById("game_message").innerHTML = "Game Message: CURRENT PLAYER IS THE WHITE PLAYER YOU MUST CHOOSE A WHITE UNIT TO MOVE";
+								document.getElementById("game_message").innerHTML = "Game Message: CURRENT PLAYER IS THE BLACK PLAYER YOU MUST CHOOSE A BLACK UNIT TO MOVE";
+
 								$("#game_message").addClass("blue_highlight");
 								
 								
@@ -988,49 +936,103 @@ $(document).ready(function(){
 								unit_is_selected = false;
 								selected_unit = "";
 
-								remove_highlights("red", move_squares);
-								
-										
-										$(".pop_up").css("display", "block");
-										$("#pieces-captured").css("display", "none");
-										$("#logs").css("display", "none");
-										$("#pop_up_info").css("display", "block");
-										$(".popup-bck").css("display","block");
-										
-										//Adds border + BG color to selected tab and removes border + BG color from the other tabs
-										$("#info-tab").css("color", "#333333");
-										$("#info-tab").css("background", "#cccccc");
-										$("#info-tab").css("font-weight", "bold");
+								remove_highlights("red", move_squares);		
 
-										$("#pieces-captured-tab").css("color", "#fff");
-										$("#pieces-captured-tab").css("background", "");
-										$("#pieces-captured-tab").css("font-weight", "");
-										
-										$("#log-tab").css("background","");
-										$("#log-tab").css("color","#fff");
-										$("#log-tab").css("font-weight","");
+											$(".pop_up").css("display", "block");
+											$("#pieces-captured").css("display", "none");
+											$("#logs").css("display", "none");
+											$("#pop_up_info").css("display", "block");
+											
+											//Adds border + BG color to selected tab and removes border + BG color from the other tabs
+											$("#info-tab").css("border-bottom", "3px solid #fff");
+											$("#info-tab").css("color", "#294C72");
+											$("#info-tab").css("background", "#fff");
+											$("#info-tab").css("font-weight", "bold");
+											
+											$("#pieces-captured-tab").css("border-bottom", "");
+											$("#pieces-captured-tab").css("color", "#fff");
+											$("#pieces-captured-tab").css("background", "");
+											$("#pieces-captured-tab").css("font-weight", "");
+											
+											$("#log-tab").css("background","");
+											$("#log-tab").css("background","");
+											$("#log-tab").css("color","#fff");
+											$("#log-tab").css("font-weight","");
+											$("#log-tab").css("border-bottom","none");
 							}
 						}
-						//Else clear the display if nothing is selected
 						else
 						{
-							document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
-							
-							console.log("Possible Moves before clearing: " + ($("#possible_moves").text()));
-							console.log("CLEARING POSSIBLE MOVES!");
-							document.getElementById('possible_moves').innerHTML = '';
-							console.log("Possible Moves after clearing: " + ($("#possible_moves").text()));
-							
-							unit_is_selected = false;
-							selected_unit = "";
+							//If BLACK
+							if (selected_unit != "")
+							{
+								if(current_player == 1)
+								{
+									document.getElementById('selected_unit').innerHTML = 'Selected Unit: (BLACK)' + selected_unit;
+									origin_square = clicked_square;
+									unit_is_selected = true;
+								}
+								//If the player selects a unit of the wrong color
+								else
+								{
+									remove_highlights("all", "");
+									
+									document.getElementById("game_message").innerHTML = "Game Message: CURRENT PLAYER IS THE WHITE PLAYER YOU MUST CHOOSE A WHITE UNIT TO MOVE";
+									$("#game_message").addClass("blue_highlight");
+									
+									
+									document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
+									console.log("Possible Moves before clearing: " + ($("#possible_moves").text()));
+									console.log("CLEARING POSSIBLE MOVES!");
+									document.getElementById('possible_moves').innerHTML = '';
+									console.log("Possible Moves after clearing: " + ($("#possible_moves").text()));
+									unit_is_selected = false;
+									selected_unit = "";
 
-							remove_highlights("red", move_squares);
+									remove_highlights("red", move_squares);
+									
+											
+											$(".pop_up").css("display", "block");
+											$("#pieces-captured").css("display", "none");
+											$("#logs").css("display", "none");
+											$("#pop_up_info").css("display", "block");
+											$(".popup-bck").css("display","block");
+											
+											//Adds border + BG color to selected tab and removes border + BG color from the other tabs
+											$("#info-tab").css("color", "#333333");
+											$("#info-tab").css("background", "#cccccc");
+											$("#info-tab").css("font-weight", "bold");
+
+											$("#pieces-captured-tab").css("color", "#fff");
+											$("#pieces-captured-tab").css("background", "");
+											$("#pieces-captured-tab").css("font-weight", "");
+											
+											$("#log-tab").css("background","");
+											$("#log-tab").css("color","#fff");
+											$("#log-tab").css("font-weight","");
+								}
+							}
+							//Else clear the display if nothing is selected
+							else
+							{
+								document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
+								
+								console.log("Possible Moves before clearing: " + ($("#possible_moves").text()));
+								console.log("CLEARING POSSIBLE MOVES!");
+								document.getElementById('possible_moves').innerHTML = '';
+								console.log("Possible Moves after clearing: " + ($("#possible_moves").text()));
+								
+								unit_is_selected = false;
+								selected_unit = "";
+
+								remove_highlights("red", move_squares);
+							}
 						}
-					}
-					//alert(clicked_square);
-					//alert(move_squares)
+						//alert(clicked_square);
+						//alert(move_squares)
 
-					move_piece();
+						move_piece();
+					}
 				}
 			}
 			else
