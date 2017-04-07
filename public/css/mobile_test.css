@@ -68,10 +68,13 @@ table, td, th {
 }
 
 td, th{
-	width: 155px;
-	height: 35px;
-	padding: 0 8px;
-	line-height: 35px;
+	width: auto;
+	height: 46px;
+	line-height: 46px;
+	padding: 0 3px;
+	line-height: auto;
+	font-size: 10px;
+	vertical-align: center;
 }
 
 /*
@@ -122,7 +125,7 @@ td, th{
 .container-two {
 	background-color: #333333;
 	border: 2px solid #333333;
-    width: 800px;
+    width: 100%;
 	border-radius: 9px;
 }
 
@@ -138,6 +141,9 @@ td, th{
 .col-one-third {
 	display: inline-block;
 	width: 33.33%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .col-one-sixth{
@@ -152,26 +158,29 @@ td, th{
 
 .black {
 	float: left;
-	width: 11%;
-    padding-top: 11%; /* 1:1 Aspect Ratio */
+	width: 11.11%;
+    padding-top: 11.11%; /* 1:1 Aspect Ratio */
 	line-height:auto;
 	background: #8c8c8c;
 	display: table-cell;
 	font-size: auto;
 	position: relative; /* If you want text inside of it */
 	
-	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	border-left: 1px solid #000;
+	border-bottom: 1px solid #000;
 }
 .white {
 	float: left;
-	width: 11%;
-    padding-top: 11%; /* 1:1 Aspect Ratio */
+	width: 11.11%;
+    padding-top: 11.11%; /* 1:1 Aspect Ratio */
 	line-height:auto;
 	background: #FFFFFF;
 	display: table-cell;
 	font-size: auto;
-	vertical-align: -50%;
 	position: relative; /* If you want text inside of it */
+	
+	border-left: 1px solid #000;
+	border-bottom: 1px solid #000;
 	
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
@@ -180,26 +189,29 @@ td, th{
 
 .label_top{
 	float: left;
-	 width: 11%;
-    padding-top: 11%; /* 1:1 Aspect Ratio */
+	width: 11.11%;
+    padding-top: 11.11%; /* 1:1 Aspect Ratio */
 	line-height:auto;
 	background: #FFFFFF;
 	display: table-cell;
 	font-size: auto;
+	position: relative; /* If you want text inside of it */
+	
 	border-left: 1px solid #000;
 	border-bottom: 1px solid #000;
 }
 
 .label_left{
 	float: left;
-	width: 11%;
-    padding-top: 11%; /* 1:1 Aspect Ratio */
+	width: 11.11%;
+    padding-top: 11.11%; /* 1:1 Aspect Ratio */
 	line-height:auto;
 	background: #FFFFFF;
 	display: table-cell;
 	font-size: auto;
+	position: relative; /* If you want text inside of it */
+	
 	border-bottom: 1px solid #000;
-
 	border-right: 1px solid #000;
 }
 
@@ -264,7 +276,7 @@ td, th{
 	font-weight: bold;
 	text-shadow: 0px 2px 3px #C9C9C9;
 	color: #8c8c8c;
-	margin: 20px auto;
+	margin: 10px auto;
 
 	line-height: 55px;
 	height: 55px;
@@ -426,11 +438,21 @@ td, th{
 
 .board {
 	clear: left;
-	margin: 20px auto;
-	 width: 100%;
+	width: 100%;
     padding-top: 100%; /* 1:1 Aspect Ratio */
+	position: relative; /* If you want text inside of it */
+	 
+	 
 	border: 1px solid #000;
 	border-radius: 5px;
+}
+
+.upshift{
+	 position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .board:hover,
@@ -460,7 +482,7 @@ td, th{
 	-o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	
-	
+	width: 100%
 
 }
 
@@ -556,12 +578,12 @@ table, td, th {
 	background: #333333;
 	color: #fff;
 	position: relative;
-	top: -1px;
+	height: 25px;
 }
 
 .table-nav ul li{
-	height: 35px;
-	line-height: 35px;
+	height: 25px;
+	line-height: 25px;
 	display: inline-block;
 	text-align: center;
 	border-radius:5px 5px 0 0;
@@ -592,7 +614,7 @@ table{
 /*	Text input for moves START	*/
 
 .alt-text-input{
-	margin: 40px auto;
+	margin: 15px auto;
 	line-height:auto;
 	height:auto;
 }

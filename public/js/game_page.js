@@ -213,7 +213,7 @@ $(document).ready(function(){
 	 //SERVER PUSHES THIS UPDATE TO THE OTHER PLAYER/SPECTATORS WHEN THE ACTIVE PLAYER CLICKS A SQUARE
 	socket.on('transmit move', function(msg){
 		console.log('transmit move, other player clicked ' + msg);
-		click_square.call(document.getElementById(msg));
+		click_square.call(document.getElementById(msg).parentElement, "transmit");
 	});
 	 
 	 
@@ -825,6 +825,7 @@ $(document).ready(function(){
 	//Adds the WHITE_PIECE/BLACK_PIECE class to squares that have chess pieces o
 	$("div").each( function()
 	{
+		console.log("Enters here");
 		if ($(this).text() == String.fromCharCode(9812) || $(this).text() == String.fromCharCode(9813) || $(this).text() == String.fromCharCode(9814)|| $(this).text() == String.fromCharCode(9815) || $(this).text() == String.fromCharCode(9816) || $(this).text() == String.fromCharCode(9817))
 		{
 			$(this).addClass("WHITE_PIECE");
@@ -858,7 +859,8 @@ $(document).ready(function(){
 					
 					var move_squares = ($("#possible_moves").text()).split(" ");
 
-					clicked_square = $(this).attr('id');
+					//clicked_square = $(this).attr('id');
+					clicked_square = $(this).children(":first").attr('id');
 					
 
 					socket.emit('update clicked square', (getCookie("session_details").concat(":")).concat(current_user.concat(":").concat(clicked_square)));
@@ -1511,6 +1513,8 @@ $(document).ready(function(){
 		
 		str = str.concat(y_axis);
 		
+		//alert(str);
+		
 		var possible_moves = "";
 		
 		//String.fromCharCode('A'.charCodeAt() + 1);
@@ -1643,16 +1647,16 @@ $(document).ready(function(){
 					var move_2 = "4".concat(y_axis);
 					
 					//Checks to see if it is blocked by any units
-					//alert(has_unit_of_color($("#".concat(move_1)).text(),"both"));
+					//alert(!has_unit_of_color($("#".concat(move_1)).text(),"both"));
 					if (!has_unit_of_color($("#".concat(move_1)).text(),"both"))
 					{
 						possible_moves = (possible_moves.concat(move_1)).concat(" ");
-						
+						//alert(possible_moves)
 						
 						if (!has_unit_of_color($("#".concat(move_2)).text(),"both"))
 						{
 							possible_moves = possible_moves.concat(move_2);
-							
+							//alert(possible_moves)
 						}
 					}
 					
@@ -2310,7 +2314,7 @@ $(document).ready(function(){
 			if ($.trim(split_moves[i]) != "")
 			{
 				//alert(split_moves[i]);
-				$("#".concat(split_moves[i])).addClass("red_highlight");
+				$("#".concat(split_moves[i])).parent().addClass("red_highlight");
 			}
 		}
 		
@@ -2379,7 +2383,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter] || ($(this).hasClass("cancel_button") && unit_is_selected))
+					if($(this).children(":first").attr('id') == move_squares[counter] || ($(this).hasClass("cancel_button") && unit_is_selected))
 					{
 						//alert()
 						dont_erase = true;
@@ -2401,7 +2405,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;
@@ -2423,7 +2427,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;
@@ -2445,7 +2449,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;
@@ -2472,7 +2476,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;
