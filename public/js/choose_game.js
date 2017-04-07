@@ -1,5 +1,15 @@
 $(document).ready(function(){
 	
+	var width_of_page = $( window ).width();
+	console.log(width_of_page);
+	
+	//Modifies html to fit mobile pages
+	if(width_of_page <= 1080)
+	{
+		$("div").removeClass("col-one-third");
+	}
+	
+
 	var usersOnline = [];
 	var one = 1;
 	

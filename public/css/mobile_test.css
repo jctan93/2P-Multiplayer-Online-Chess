@@ -115,7 +115,7 @@ td, th{
 	position: relative;
 	margin: 0px auto;
     width: auto;
-	padding: 20px 20px;
+	padding: 10px 10px;
 	/*background: #fff;*/
 }
 
@@ -152,23 +152,26 @@ td, th{
 
 .black {
 	float: left;
-	width: 75px;
-	height:75px;
-	line-height:75px;
+	width: 11%;
+    padding-top: 11%; /* 1:1 Aspect Ratio */
+	line-height:auto;
 	background: #8c8c8c;
 	display: table-cell;
-	font-size: 75px;
+	font-size: auto;
+	position: relative; /* If you want text inside of it */
 	
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .white {
 	float: left;
-	width: 75px;
-	height:75px;
-	line-height:75px;
+	width: 11%;
+    padding-top: 11%; /* 1:1 Aspect Ratio */
+	line-height:auto;
 	background: #FFFFFF;
 	display: table-cell;
-	font-size: 75px;
+	font-size: auto;
+	vertical-align: -50%;
+	position: relative; /* If you want text inside of it */
 	
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
@@ -177,27 +180,38 @@ td, th{
 
 .label_top{
 	float: left;
-	width: 75px;
-	height:75px;
-	line-height:75px;
+	 width: 11%;
+    padding-top: 11%; /* 1:1 Aspect Ratio */
+	line-height:auto;
 	background: #FFFFFF;
 	display: table-cell;
-	font-size: 75px;
+	font-size: auto;
 	border-left: 1px solid #000;
 	border-bottom: 1px solid #000;
 }
 
 .label_left{
 	float: left;
-	width: 75px;
-	height:75px;
-	line-height:75px;
+	width: 11%;
+    padding-top: 11%; /* 1:1 Aspect Ratio */
+	line-height:auto;
 	background: #FFFFFF;
 	display: table-cell;
-	font-size: 75px;
+	font-size: auto;
 	border-bottom: 1px solid #000;
 
 	border-right: 1px solid #000;
+}
+
+.text{
+	position:  absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   text-align: center;
+   font-size: 41px;
+   line-height: 41px;
 }
 
 .top-left{
@@ -246,16 +260,16 @@ td, th{
 
 
 	font-family: Georgia, serif;
-	font-size: 30px;
+	font-size: 24px;
 	font-weight: bold;
 	text-shadow: 0px 2px 3px #C9C9C9;
 	color: #8c8c8c;
 	margin: 20px auto;
-	line-height: 75px;
-	height: 75px;
-	width: 200px;
-	border-radius: 15px;
-	box-shadow: inset 0 0 0 1px #606060;
+
+	line-height: 55px;
+	height: 55px;
+	width: 95%;
+	border-radius: 10px;
 	/*border: 1px solid #000;*/
 	
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -413,8 +427,8 @@ td, th{
 .board {
 	clear: left;
 	margin: 20px auto;
-	width: 677px;
-	height: 677px;
+	 width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
 	border: 1px solid #000;
 	border-radius: 5px;
 }
@@ -579,8 +593,8 @@ table{
 
 .alt-text-input{
 	margin: 40px auto;
-	line-height:36px;
-	height:36px;
+	line-height:auto;
+	height:auto;
 }
 
 .inbetween, input, .move-button {
@@ -1135,7 +1149,7 @@ header{
 	border-radius: 0;
 	padding: 10px; 
 	margin-right: 5px;
-	width: 90%; 
+	width: 80%; 
 	margin-bottom:0;
 }
 
@@ -1145,7 +1159,7 @@ header{
 
 	border-radius: 0;
 	font-weight: bold;
-	width: 9%;
+	width: 50px;
 	background: #74b1e8;
 	color: #fff;
 	padding: 10px; 
@@ -1172,6 +1186,7 @@ form[name=chat-form]{
 	background: #000; 
 	padding: 3px; 
 	height: 52px;
+	width: 100%;
 }
 
 form[name=chat-form-global]{
@@ -1312,7 +1327,6 @@ input[id="password"]{
 }
 
 #append-chat-here, #append-chat-here-global{
-	padding: 0 3px;
 }
 
 #global{
@@ -1351,6 +1365,12 @@ input[id="password"]{
 }
 
 .dropdown-content ul{
+	  display: flex;
+	  flex-direction: column;
+	  flex-wrap: wrap;
+}
+
+.choose-buttons ul{
 	  display: flex;
 	  flex-direction: column;
 	  flex-wrap: wrap;
