@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="public/css/main.css">
+		<link rel="stylesheet" media="screen and (min-device-width: 1920px)" href="public/css/main.css">
 		<link rel="stylesheet" media="screen and (max-device-width: 1080px)" href="public/css/mobile_test.css" />
 		<script type="text/javascript" src="public/js/jquery-3.1.0.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
@@ -14,13 +14,19 @@
 	<header>
 		<div class="header-container">
 			<div class="header-text">Lobbies</div>
-			<nav class="nav">
-				<ul>
-					<li>
-						<div id="logout-button"  class="logout-button">Logout</div>
-					</li>
-				</ul>
-			</nav>
+				<nav class="nav">
+					<div class="dropdown">
+						<button class="dropbtn">☰</button>
+						<div class="dropdown-content">
+							<ul>
+								<li>
+									<div id="logout-button"  class="logout-button">Logout</div>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				</nav>
 		</div>
 	</header>
 	

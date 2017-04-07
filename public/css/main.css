@@ -1313,3 +1313,10 @@ input[id="username"]{
 #global{
 	display: none;
 }
+
+/* Mobile dropdown button */
+.dropbtn {
+	display: none;
+}
+
+
