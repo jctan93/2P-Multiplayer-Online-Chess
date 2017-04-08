@@ -272,6 +272,8 @@ $(document).ready(function(){
 		}
 		
 		$( ".chat-button").addClass("flash-button");
+		$( ".dropbtn").addClass("flash-button");
+		$(window).scrollTo("#chat-button");
 	});
 	
 	socket.on('global chat message', function(msg){
@@ -787,7 +789,7 @@ $(document).ready(function(){
 		$(".popup-bck").css("display","block");
 		
 		$( ".chat-button").removeClass("flash-button" );
-
+		$( ".dropbtn").removeClass("flash-button" );
 	});
 	
 	$(document).on('click', ".chat-close", function(){

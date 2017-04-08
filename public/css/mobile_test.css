@@ -281,7 +281,7 @@ td, th{
 	line-height: 55px;
 	height: 55px;
 	width: 95%;
-	border-radius: 10px;
+	border-radius: 5px;
 	/*border: 1px solid #000;*/
 	
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -588,6 +588,7 @@ table, td, th {
 	text-align: center;
 	border-radius:5px 5px 0 0;
 	border-bottom: none;
+	padding: 0 5px;
 }
 
 .table-nav ul li:hover,
@@ -626,13 +627,13 @@ table{
 }
 
 .move-button{
-	
+
 	font-family: Georgia, serif;
 	font-weight: bold;
 	font-size: 20px;
 	
 	height: 46px;
-	width:163px;
+	width: 25%;
 	line-height:46px;
 	
 	color: #518700;
@@ -688,10 +689,20 @@ header{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+	
 }
 
 .lobby-nav li .sessionID{
 	text-align: left;
+}
+
+.lobby-nav ul li .player-one,
+.lobby-nav ul li .player-two,
+.lobby-nav ul li .sessionID{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0 5px;
 }
 
 .lobby-choose-nav li{
@@ -704,12 +715,12 @@ header{
 
 .lobby-choose-nav li:first-child{
 	border-right: none;
-	border-top-left-radius: 5px;
+	border-top-left-radius: 3px;
 }
 
 .lobby-choose-nav li:last-child{
 	border-left: none;
-	border-top-right-radius: 5px;
+	border-top-right-radius: 3px;
 }
 
 .lobby-choose-nav li:hover,
@@ -733,7 +744,7 @@ header{
 	height:50px;
 	line-height:50px;
 	background:#fff;
-	border-radius:9px;
+	border-radius:4px;
 }
 
 .header-text{
@@ -896,7 +907,7 @@ header{
 	line-height: 75px;
 	height: 75px;
 	width: 200px;
-	border-radius: 15px;
+	border-radius: 4px;
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	cursor: pointer;
 }
@@ -962,7 +973,7 @@ header{
 	background: rgb(51, 204, 51);
 	font-size: 30px;
 	font-weight: bold;
-	margin: 20px auto;
+	margin: 10px auto;
 	line-height: 71px;
 	height: 75px;
 	width: 200px;
@@ -990,7 +1001,7 @@ header{
 	background: #ff3019;
 	font-size: 30px;
 	font-weight: bold;
-	margin: 20px auto;
+	margin: 10px auto;
 	line-height: 71px;
 	height: 75px;
 	width: 200px;
@@ -1018,7 +1029,7 @@ header{
 	background: #74b1e8;
 	font-size: 30px;
 	font-weight: bold;
-	margin: 20px auto;
+	margin: 10px auto;
 	line-height: 71px;
 	height: 75px;
 	width: 200px;
@@ -1112,7 +1123,7 @@ header{
 
 .popup-chat{
 	display: none;
-	width: 677px;
+	width: 90%;
 	color: white;
 	background-color: #333333;
 	position: fixed;
@@ -1176,19 +1187,19 @@ header{
 }
 
 .chat-send-button{
-	height: 46px;
-	border: none; 
-
-	border-radius: 0;
-	font-weight: bold;
-	width: 50px;
-	background: #74b1e8;
-	color: #fff;
-	padding: 10px; 
-	margin-top: -2px;
-	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	position: relative;
 	top: -1px;
+	height: 46px;
+	border: 0; 
+	padding: 10px; 
+	width: 50px; 
+	margin-bottom:0;
+	background: #74b1e8;
+	color: #fff;
+	font-weight: bold;
+
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
 }
 
 .chat-send-button:hover{
@@ -1241,9 +1252,9 @@ form[name=chat-form-global]{
 }
 
 @keyframes flash {  
-    0% { background: #fff; color: #000; box-shadow: none;}
-    50% { background: #000; color: #fff; box-shadow: none;}
-    100% { background: #fff; color: #000; box-shadow: none;}
+    0% { background: #74b1e8; color: #fff; box-shadow: none; border: 1px solid #27496d;}
+    50% { background: #fff; color: #74b1e8; box-shadow: none; border: 1px solid #fff;}
+    100% { background: #74b1e8; color: #fff; box-shadow: none; border: 1px solid #27496d;}
 }
 
 @-webkit-keyframes flash {  
@@ -1322,7 +1333,7 @@ input[id="password"]{
 }
 
 .choose-content{
-	border-radius: 10px;
+	border-radius: 4px;
 }
 
 .choose-chat{
@@ -1396,4 +1407,15 @@ input[id="password"]{
 	  display: flex;
 	  flex-direction: column;
 	  flex-wrap: wrap;
+}
+
+/* Text input */
+#start-square, 
+#destination-square{
+	width: 25%;
+	padding: 0 5px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
