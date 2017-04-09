@@ -1205,9 +1205,9 @@ form[name=chat-form-global]{
 }
 
 @keyframes flash {  
-    0% { background: #fff; color: #000; box-shadow: none;}
-    50% { background: #000; color: #fff; box-shadow: none;}
-    100% { background: #fff; color: #000; box-shadow: none;}
+    0% { background: #74b1e8; color: #fff; box-shadow: none; border: 1px solid #27496d;}
+    50% { background: #fff; color: #74b1e8; box-shadow: none; border: 1px solid #fff;}
+    100% { background: #74b1e8; color: #fff; box-shadow: none; border: 1px solid #27496d;}
 }
 
 @-webkit-keyframes flash {  

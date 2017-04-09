@@ -116,29 +116,149 @@ function saltHashPasswordWithSalt(userpassword, usersalt) {
 }
 
 io.on('connection', function(socket){
+	console.log("-----");
 	console.log('a user connected');	
 	
 	socket.on('join', function (data) {
+		console.log("-----");
 		socket.join(data.ID); // We are using room of socket io
 		console.log("Joined room " + data.ID);
 	});
 	
 	socket.on('disconnect', function(){
+		console.log("-----");
 		console.log('user disconnected');
 	 });
   
 	socket.on('chat message', function(msg){
+		console.log("-----");
 		console.log('message: ' + msg);
 		 io.emit('chat message', msg);
 	});
 	
 	socket.on('global chat', function(msg){
+		console.log("-----");
 		console.log('global chat message: ' + msg);
 		 io.emit('global chat message', msg);
 	});
 	
-	socket.on('update clicked square', function(msg){
+	socket.on('cancel', function(msg){
+		console.log("-----");
+		var player =  msg.split(":")[1];
+		var session =  msg.split(":")[0];
+		console.log("Cancel request from player: " + player + " in session: " + session);
 		
+		con.query("SELECT * FROM Sessions WHERE Hash = ?",[session],function(err,rows){
+			if(err)
+			{
+				throw err;
+			}
+			else if(rows.length != 0)
+			{
+				var outer_rows = rows[0];
+				var spectators = outer_rows.Spectators.split(":");
+				
+				//CHECKS IF USER SUBMITTING THE TEXT MESSAGE EXISTS
+				con.query("SELECT * FROM LoginCookies WHERE Hash = ?",[player],function(err,rows){
+					if(err)
+					{
+						throw err;
+					}
+					else if(rows.length != 0)
+					{
+						var player_submitting = rows[0].Username;
+						console.log("player submitting cancel: " + player_submitting);
+						console.log("Player One: " + outer_rows.PlayerOne);
+						console.log("Player Two: " + outer_rows.PlayerTwo);
+						var player_one;
+						var player_two;
+						var notaplayer = true;
+						var one_online = false;
+						var two_online = false;
+						var to_send = player_submitting.concat(": ").concat(msg);
+						var current_player;
+						
+						if(outer_rows.CurrentPlayer == "PlayerOne")
+						{
+							current_player = outer_rows.PlayerOne;
+						}
+						else
+						{
+							current_player = outer_rows.PlayerTwo;
+						}
+
+						if(player_submitting == current_player)
+						{
+							//IF THE USER EXISTS, THEN THE SERVER SENDS A QUERY TO THE DATABASE TO GET THE INFO OF THE OTHER PLAYER IN THE GAME SESSION
+							con.query("SELECT * FROM `LoginCookies` WHERE Username = ?",[outer_rows.PlayerOne],function(err,rows){
+									if(err)
+									{
+										throw err;
+									}
+									else if(rows.length != 0)
+									{
+										console.log("Player One");
+										console.log(rows);
+										player_one = rows[0].Hash;
+										one_online = true;
+									}
+									
+									con.query("SELECT * FROM LoginCookies WHERE Username = ?",[outer_rows.PlayerTwo],function(err,rows){
+										if(err)
+										{
+											throw err;
+										}
+										else if(rows.length != 0)
+										{
+											console.log("Player Two");
+											console.log(rows);
+											player_two = rows[0].Hash;
+											two_online = true;
+										}
+										
+										console.log("Player One and Two Status: " + one_online + " ; " + two_online);
+																
+										if(player_submitting != outer_rows.PlayerOne && player_submitting != outer_rows.PlayerTwo)
+										{
+											console.log("Send to P1 & P2");
+											io.sockets.in(player_one).emit('cancel', to_send);
+											io.sockets.in(player_two).emit('cancel', to_send);
+										}
+										else
+										{
+											if(player_submitting != outer_rows.PlayerOne)
+											{
+												console.log("Send to P1 & Spectators");
+												io.sockets.in(player_one).emit('cancel', to_send);
+											}
+											else if(player_submitting != outer_rows.PlayerTwo)
+											{
+												console.log("Send to P2 & Spectators");
+												io.sockets.in(player_two).emit('cancel', to_send);
+											}
+										}
+										
+										//Sends to spectators
+										for(var i = 0 ; i < spectators.length; i++)
+										{
+											if(spectators[i] != player)
+											{
+												io.sockets.in(spectators[i]).emit('cancel', to_send);
+											}
+											
+										}
+									});
+							});
+						}
+					}
+				});
+				
+			}
+		});
+	});
+	
+	socket.on('update clicked square', function(msg){
+		console.log("-----");
 		//[0] IS THE GAME ID/HASH, [1] IS THE PLAYER ID/HASH, [2] IS THE SQUARE CLICKED
 		var split_string = msg.split(":");
 		console.log("Transmitting current player's " + split_string[1] + " click " + split_string[2] +" to the other player and spectators of game " + split_string[0]);
@@ -210,6 +330,7 @@ io.on('connection', function(socket){
 	
 	//HANDLES THE REMOVE SPECTATOR EVENT. THIS EVENT IS FIRED FROM THE CLIENT WHEN THE USER LEAVES THE CURRENT PAGE
 	socket.on('remove spectator', function(msg){
+		console.log("-----");
 		//console.log('remove spectator: ' + msg);
 		
 		//[0] IS THE GAME ID, [1] IS THE SPECTATOR ID
@@ -252,6 +373,7 @@ io.on('connection', function(socket){
 	});
 	
 	socket.on('private game chat', function(msg){
+		console.log("-----");
 		console.log('Private Chat message: ');
 		 //io.emit('chat message', msg);
 		var split_string = msg.split("::;");
@@ -270,6 +392,7 @@ io.on('connection', function(socket){
 			else if(rows.length != 0)
 			{
 				var outer_rows = rows[0];
+				var spectators = outer_rows.Spectators.split(":");
 				
 				//CHECKS IF USER SUBMITTING THE TEXT MESSAGE EXISTS
 				con.query("SELECT * FROM LoginCookies WHERE Hash = ?",[user_submitting_chat],function(err,rows){
@@ -281,65 +404,89 @@ io.on('connection', function(socket){
 					{
 						var player_submitting = rows[0].Username;
 						console.log("player submitting: " + player_submitting);
-						console.log(outer_rows.PlayerOne);
-						console.log(outer_rows.PlayerTwo);
+						console.log("Player One: " + outer_rows.PlayerOne);
+						console.log("Player Two: " + outer_rows.PlayerTwo);
 						var player_one;
 						var player_two;
 						var notaplayer = true;
+						var one_online = false;
+						var two_online = false;
+						var to_send = player_submitting.concat(": ").concat(chat_message);
+						
 						
 						//IF THE USER EXISTS, THEN THE SERVER SENDS A QUERY TO THE DATABASE TO GET THE INFO OF THE OTHER PLAYER IN THE GAME SESSION
-						if(player_submitting != outer_rows.PlayerOne)
-						{
-							con.query("SELECT * FROM `LoginCookies` WHERE Username = ?",[outer_rows.PlayerOne],function(err,rows){
+						con.query("SELECT * FROM `LoginCookies` WHERE Username = ?",[outer_rows.PlayerOne],function(err,rows){
 								if(err)
 								{
 									throw err;
 								}
 								else if(rows.length != 0)
 								{
-									console.log("Other player is: " + rows[0].Username + " With Hash: " + rows[0].Hash);
-									var to_send = player_submitting.concat(": ").concat(chat_message);
-									console.log("To send: " + to_send);
-									io.sockets.in(rows[0].Hash).emit('private game chat', to_send);
+									console.log("Player One");
+									console.log(rows);
 									player_one = rows[0].Hash;
-									notaplayer = false;
+									one_online = true;
 								}
-							});
-						}
-						else if(player_submitting != outer_rows.PlayerTwo)
-						{
-							con.query("SELECT * FROM LoginCookies WHERE Username = ?",[outer_rows.PlayerTwo],function(err,rows){
-								if(err)
-								{
-									throw err;
-								}
-								else if(rows.length != 0)
-								{
+								
+								con.query("SELECT * FROM LoginCookies WHERE Username = ?",[outer_rows.PlayerTwo],function(err,rows){
+									if(err)
+									{
+										throw err;
+									}
+									else if(rows.length != 0)
+									{
+										console.log("Player Two");
+										console.log(rows);
+										player_two = rows[0].Hash;
+										two_online = true;
+									}
 									
-									console.log("Other player is: " + rows[0].Username + " With Hash: " + rows[0].Hash);
-									var to_send = player_submitting.concat(": ").concat(chat_message);
-									console.log("To send: " + to_send);
-									io.sockets.in(rows[0].Hash).emit('private game chat', to_send);
-									player_two = rows[0].Hash;
-									notaplayer = false;
-								}
-							});
-						}
+									console.log("Player One and Two Status: " + one_online + " ; " + two_online);
+															
+									if(player_submitting != outer_rows.PlayerOne && player_submitting != outer_rows.PlayerTwo)
+									{
+										console.log("Send to P1 & P2");
+										io.sockets.in(player_one).emit('private game chat', to_send);
+										io.sockets.in(player_two).emit('private game chat', to_send);
+									}
+									else
+									{
+										if(player_submitting != outer_rows.PlayerOne)
+										{
+											console.log("Send to P1 & Spectators");
+											io.sockets.in(player_one).emit('private game chat', to_send);
+										}
+										else if(player_submitting != outer_rows.PlayerTwo)
+										{
+											console.log("Send to P2 & Spectators");
+											io.sockets.in(player_two).emit('private game chat', to_send);
+										}
+									}
+									
+									//Sends to spectators
+									for(var i = 0 ; i < spectators.length; i++)
+									{
+										if(spectators[i] != user_submitting_chat)
+										{
+											io.sockets.in(spectators[i]).emit('private game chat', to_send);
+										}
+										
+									}
+								});
+						});
 						
-						if(notaplayer)
-						{
-							var to_send = player_submitting.concat(": ").concat(chat_message);
-							io.sockets.in(player_one).emit('private game chat', to_send);
-							io.sockets.in(player_two).emit('private game chat', to_send);
-						}
+						
 					}
 				});
 				
 			}
 		});
+		
+		
 	});
 	
 	socket.on('get login cookie', function(msg){
+		console.log("-----");
 		console.log('Get cookie request: ' + msg);
 		
 		con.query("SELECT * FROM `LoginCookies` WHERE `Hash` = " + msg,function(err,rows){
@@ -358,6 +505,7 @@ io.on('connection', function(socket){
   
 	//Fetches info from the database to check if the login details exist, allows login if details exist + match
 	socket.on('login attempt', function(msg){
+		console.log("-----");
 		console.log('login attempt: ' + msg);
 		var split_string = msg.split(":");
 		//console.log(split_string[2]);
@@ -486,6 +634,7 @@ io.on('connection', function(socket){
 	});
 	
 	socket.on('logout attempt', function(msg){
+		console.log("-----");
 		console.log('logout attempt from: ' + msg);
 		
 		var user_name;	
