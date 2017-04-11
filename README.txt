@@ -14,15 +14,16 @@ Features:
 An instance of this webapp is hosted at https://thomasthedankengine.herokuapp.com/
 
 --------------------
+>> Means it is a feature that was implemented from "TO BE ADDED IN THE FUTURE" 
 
 Update 1 - 09/04/2017:
 > Added mobile friendly stylesheet
 > Fixed broken move text input button
 > Added feature where the spectators/other player can see which square the active player has clicked
 
-
+Update 2 - 11/04/2017:
+>> Global chat on login page which doesn't require chat users to be logged in
 
 TO BE ADDED IN THE FUTURE:
-> Global chat on login page which doesn't require chat users to be logged in
 > Direct messages to users (besides global and match private chat)
 > Password reset option (registration will need to be overhauled, will require users to enter emails)
