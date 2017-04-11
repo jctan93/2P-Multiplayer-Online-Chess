@@ -218,9 +218,13 @@ $(document).ready(function(){
 	//SERVER PUSHES THIS UPDATE TO THE OTHER PLAYER/SPECTATORS WHEN THE ACTIVE PLAYER CLICKS A SQUARE
 	socket.on('transmit move', function(msg){
 		console.log('transmit move, other player clicked ' + msg);
-		click_square.call(document.getElementById(msg));
+		click_square.call(document.getElementById(msg).parentElement);
 	});
-	 
+	
+	 //SERVER PUSHES THIS UPDATE TO THE OTHER PLAYER/SPECTATORS WHEN THE ACTIVE PLAYER CANCELS HIS/HER CLICK
+	socket.on('cancel', function(msg){
+		cancel_function.call("");
+	});
 	 
 	//Restores state of previous game when it receives the "game state" emit from the server
 	socket.on("game state", function(msg)
@@ -835,7 +839,7 @@ $(document).ready(function(){
 				
 				var move_squares = ($("#possible_moves").text()).split(" ");
 
-				clicked_square = $(this).attr('id');
+				clicked_square = $(this).children(":first").attr('id');
 				
 				var clicked_possible_move = false;
 				
@@ -1179,22 +1183,28 @@ $(document).ready(function(){
 		}
 	);
 	
-	$(document).on('click',"#cancel_button",function()
-	{
-				//document.getElementById('system_message').innerHTML = "System Message: UNIT IS SELECTED " + unit_is_selected;
-				
-				document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
-							
-				document.getElementById('possible_moves').innerHTML = '';
+	$(document).on('click',"#cancel_button",function(){
+		cancel_function.call("");	
+	});	
+	
+	var cancel_function = function(x){
+		//document.getElementById('system_message').innerHTML = "System Message: UNIT IS SELECTED " + unit_is_selected;
+		
+		document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
+					
+		document.getElementById('possible_moves').innerHTML = '';
 
-				document.getElementById("move_to").innerHTML = "Move To: ";
-				
-				unit_is_selected = false;
-				selected_unit = "";
+		document.getElementById("move_to").innerHTML = "Move To: ";
+		
+		var to_send = getCookie("session_details").concat(":").concat(getCookie("login_cookie"));
+		
+		socket.emit('cancel', to_send);
+		
+		unit_is_selected = false;
+		selected_unit = "";
 
-				remove_highlights("all", "");
-		}
-	);	
+		remove_highlights("all", "");
+	};
 	
 	//REMOVES THE USER AS A SPECTATOR IF THEY LEAVE THE PAGE		
 	$(window).on('beforeunload', function(){
@@ -2133,7 +2143,7 @@ $(document).ready(function(){
 			if ($.trim(split_moves[i]) != "")
 			{
 				//alert(split_moves[i]);
-				$("#".concat(split_moves[i])).addClass("red_highlight");
+				$("#".concat(split_moves[i])).parent().addClass("red_highlight");
 			}
 		}
 		
@@ -2192,7 +2202,7 @@ $(document).ready(function(){
 		return false;
 	}
 	
-	//Helper function to remove highlights from squares that aren't in the move_squares array
+		//Helper function to remove highlights from squares that aren't in the move_squares array
 	function remove_highlights(color, move_squares)
 	{
 		if(color == "red")
@@ -2202,7 +2212,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter] || ($(this).hasClass("cancel_button") && unit_is_selected))
+					if($(this).children(":first").attr('id') == move_squares[counter] || ($(this).hasClass("cancel_button") && unit_is_selected))
 					{
 						//alert()
 						dont_erase = true;
@@ -2224,7 +2234,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;
@@ -2246,7 +2256,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;
@@ -2268,7 +2278,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;
@@ -2295,7 +2305,7 @@ $(document).ready(function(){
 				var dont_erase = false;
 				for(counter = 0 ; counter < move_squares.length; counter++)
 				{
-					if($(this).attr('id') == move_squares[counter])
+					if($(this).children(":first").attr('id') == move_squares[counter])
 					{
 						//alert()
 						dont_erase = true;

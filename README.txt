@@ -12,3 +12,17 @@ Features:
 > Next. navigate to localhost:3000 in your browser to reach the login page
 
 An instance of this webapp is hosted at https://thomasthedankengine.herokuapp.com/
+
+--------------------
+
+Update 1 - 09/04/2017:
+> Added mobile friendly stylesheet
+> Fixed broken move text input button
+> Added feature where the spectators/other player can see which square the active player has clicked
+
+
+
+TO BE ADDED IN THE FUTURE:
+> Global chat on login page which doesn't require chat users to be logged in
+> Direct messages to users (besides global and match private chat)
+> Password reset option (registration will need to be overhauled, will require users to enter emails)

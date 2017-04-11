@@ -281,7 +281,7 @@ td, th{
 	line-height: 55px;
 	height: 55px;
 	width: 95%;
-	border-radius: 10px;
+	border-radius: 5px;
 	/*border: 1px solid #000;*/
 	
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -588,6 +588,7 @@ table, td, th {
 	text-align: center;
 	border-radius:5px 5px 0 0;
 	border-bottom: none;
+	padding: 0 5px;
 }
 
 .table-nav ul li:hover,
@@ -626,13 +627,13 @@ table{
 }
 
 .move-button{
-	
+
 	font-family: Georgia, serif;
 	font-weight: bold;
 	font-size: 20px;
 	
 	height: 46px;
-	width:163px;
+	width: 25%;
 	line-height:46px;
 	
 	color: #518700;
@@ -688,10 +689,20 @@ header{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+	
 }
 
 .lobby-nav li .sessionID{
 	text-align: left;
+}
+
+.lobby-nav ul li .player-one,
+.lobby-nav ul li .player-two,
+.lobby-nav ul li .sessionID{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0 5px;
 }
 
 .lobby-choose-nav li{
@@ -704,12 +715,12 @@ header{
 
 .lobby-choose-nav li:first-child{
 	border-right: none;
-	border-top-left-radius: 5px;
+	border-top-left-radius: 3px;
 }
 
 .lobby-choose-nav li:last-child{
 	border-left: none;
-	border-top-right-radius: 5px;
+	border-top-right-radius: 3px;
 }
 
 .lobby-choose-nav li:hover,
@@ -733,7 +744,7 @@ header{
 	height:50px;
 	line-height:50px;
 	background:#fff;
-	border-radius:9px;
+	border-radius:4px;
 }
 
 .header-text{
@@ -896,7 +907,7 @@ header{
 	line-height: 75px;
 	height: 75px;
 	width: 200px;
-	border-radius: 15px;
+	border-radius: 4px;
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	cursor: pointer;
 }
@@ -920,6 +931,7 @@ header{
 	top: 0px;
 	left: 0px;
 	z-index: 10;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .popup-content-box{
 	display: none;
@@ -939,6 +951,7 @@ header{
 	border: 2px solid #fff;
 	
 	cursor:default;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .close-two{
@@ -962,7 +975,7 @@ header{
 	background: rgb(51, 204, 51);
 	font-size: 30px;
 	font-weight: bold;
-	margin: 20px auto;
+	margin: 10px auto;
 	line-height: 71px;
 	height: 75px;
 	width: 200px;
@@ -990,7 +1003,7 @@ header{
 	background: #ff3019;
 	font-size: 30px;
 	font-weight: bold;
-	margin: 20px auto;
+	margin: 10px auto;
 	line-height: 71px;
 	height: 75px;
 	width: 200px;
@@ -1018,7 +1031,7 @@ header{
 	background: #74b1e8;
 	font-size: 30px;
 	font-weight: bold;
-	margin: 20px auto;
+	margin: 10px auto;
 	line-height: 71px;
 	height: 75px;
 	width: 200px;
@@ -1092,6 +1105,7 @@ header{
 	transform: translate(-50%, -50%);
 	
 	cursor:default;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .chat-menu{
@@ -1112,7 +1126,7 @@ header{
 
 .popup-chat{
 	display: none;
-	width: 677px;
+	width: 90%;
 	color: white;
 	background-color: #333333;
 	position: fixed;
@@ -1176,19 +1190,18 @@ header{
 }
 
 .chat-send-button{
+	position: relative;
 	height: 46px;
-	border: none; 
-
-	border-radius: 0;
-	font-weight: bold;
-	width: 50px;
+	border: 0; 
+	padding: 10px; 
+	width: 50px; 
+	margin-bottom:0;
 	background: #74b1e8;
 	color: #fff;
-	padding: 10px; 
-	margin-top: -2px;
+	font-weight: bold;
+
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-	position: relative;
-	top: -1px;
+
 }
 
 .chat-send-button:hover{
@@ -1205,14 +1218,17 @@ header{
 }
 
 form[name=chat-form]{
-	background: #000; 
+	 display: flex;
+	justify-content: center;
+	background: #333333; 
 	padding: 3px; 
 	height: 52px;
-	width: 100%;
 }
 
 form[name=chat-form-global]{
-	background: #000; 
+	 display: flex;
+	justify-content: center;
+	background: #333333; 
 	padding: 3px; 
 	height: 52px;
 }
@@ -1241,9 +1257,9 @@ form[name=chat-form-global]{
 }
 
 @keyframes flash {  
-    0% { background: #fff; color: #000; box-shadow: none;}
-    50% { background: #000; color: #fff; box-shadow: none;}
-    100% { background: #fff; color: #000; box-shadow: none;}
+    0% { background: #74b1e8; color: #fff; box-shadow: none; border: 1px solid #27496d;}
+    50% { background: #fff; color: #74b1e8; box-shadow: none; border: 1px solid #fff;}
+    100% { background: #74b1e8; color: #fff; box-shadow: none; border: 1px solid #27496d;}
 }
 
 @-webkit-keyframes flash {  
@@ -1266,7 +1282,7 @@ form[name=chat-form-global]{
 	display: inline-block;
 	height: 315px;
 	width:90%;
-	margin: 10px auto;
+	margin-bottom: 10px;
 	position: relative;
 }
 
@@ -1322,7 +1338,7 @@ input[id="password"]{
 }
 
 .choose-content{
-	border-radius: 10px;
+	border-radius: 4px;
 }
 
 .choose-chat{
@@ -1377,6 +1393,7 @@ input[id="password"]{
     z-index: 1;
 	right: 0px;
 	top:50px;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .dropdown:hover .dropdown-content {
@@ -1396,4 +1413,94 @@ input[id="password"]{
 	  display: flex;
 	  flex-direction: column;
 	  flex-wrap: wrap;
+}
+
+/* Text input */
+#start-square, 
+#destination-square{
+	width: 25%;
+	padding: 0 5px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+/* Login page css stuff added later*/
+input[id="login-name-input"]
+{
+	padding-left: 5px;
+	width: 25%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	border-radius: 0;
+	border: none;
+	border-right: 2px solid rgb(157, 163, 166);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+input[id="login-chat-input"]
+{
+	padding-left: 5px;
+	border-radius: 0;
+	width: 65%;
+	margin-right: 5px;
+	border: none;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.login-chat-send-button{
+	height: 46px;
+	width: 15%;
+	max-width: 68px;
+	padding: 0 0;
+	box-shadow: none;
+	outline: none;
+	border:none;
+	margin: auto 0px;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.login-choose-nav{
+	margin-bottom: 10px;
+}
+
+.login-choose-nav ul{
+	width: 250px;
+	margin: auto 0px;
+	display: inline-block;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	background-color: rgba(51, 51, 51, 0.5);
+}
+
+.login-choose-nav ul li{
+	display: inline-block;
+	padding: 5px 5px;
+	width:50%;
+	cursor: pointer;
+}
+
+.login-choose-nav ul li:hover{
+	font-weight: bold;
+	border-bottom: 2px solid  linear-gradient(180deg, rgba(111,170,222,1) 0%, rgba(116,177,232,1) 100%);
+	color: linear-gradient(180deg, rgba(111,170,222,1) 0%, rgba(116,177,232,1) 100%);
+	background: #74b1e8;
+	background: #fff; /* w3c */
+}
+
+.login-choose-nav ul li:first-child{
+	border-right: none;
+}
+
+.global-chat-tab{
+	display: none;
+}
+
+.selected-tab{
+	background-color: rgba(51, 51, 51, 1);
+	color: #fff;
+	background: #74b1e8;
+	background: linear-gradient(180deg, rgba(111,170,222,1) 0%, rgba(116,177,232,1) 100%); /* w3c */
+	border-bottom: 2px solid #fff;
 }

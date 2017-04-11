@@ -37,11 +37,11 @@ $(document).ready(function(){
 	//Checks if the user belongs on the page
 	 if(getCookie("login_cookie"))
 	 {
-		 console.log("Login Cookie exists? ".concat(getCookie("login_cookie")));
+		 //console.log("Login Cookie exists? ".concat(getCookie("login_cookie")));
 	 }
 	 else
 	 {
-		 console.log("Cookie doesn't exist");
+		//console.log("Cookie doesn't exist");
 		 window.location="/login";
 	 }
 	 
@@ -97,11 +97,11 @@ $(document).ready(function(){
     }
 	
 	//Creates Socket Room to communicate with the server
-	console.log("User logged in now is: " + getCookie("login_cookie").split(":")[0])
+	//console.log("User logged in now is: " + getCookie("login_cookie").split(":")[0])
 	var current_user = getCookie("login_cookie").split(":")[0];
 	socket.emit('join', {ID: current_user});
 	
-	console.log("Requesting login cookie info");
+	//console.log("Requesting login cookie info");
 	socket.emit('get login cookie', getCookie("login_cookie"));
 	
 	update_details();
@@ -109,7 +109,7 @@ $(document).ready(function(){
 	//Checks if the user belongs on the page
 	 if(getCookie("session_details"))
 	 {
-		 console.log("Session Cookie exists? ".concat(getCookie("session_details")));
+		 //console.log("Session Cookie exists? ".concat(getCookie("session_details")));
 		 
 		 var game_cookie = getCookie("session_details");
 		 var login_cookie = getCookie("login_cookie");
@@ -132,7 +132,7 @@ $(document).ready(function(){
 		{
 			console.log();
 			var cookie = msg[i].Cookie;
-			console.log("Current user: " + cookie.split(":")[0]);
+			//console.log("Current user: " + cookie.split(":")[0]);
 			document.getElementById("logout-button").innerHTML = "Logout".concat(" : " + cookie.split(":")[0]);
 			username = cookie.split(":")[0];
 			user_logged_in = cookie.split(":")[0];
@@ -197,7 +197,7 @@ $(document).ready(function(){
 			}
 		}
 		
-		console.log("Current Player: " + split_string[4]);
+		//console.log("Current Player: " + split_string[4]);
 		if(split_string[4] == "PlayerOne")
 		{
 			current_player = 0;
@@ -214,6 +214,12 @@ $(document).ready(function(){
 	socket.on('transmit move', function(msg){
 		console.log('transmit move, other player clicked ' + msg);
 		click_square.call(document.getElementById(msg).parentElement, "transmit");
+	});
+	
+	 //SERVER PUSHES THIS UPDATE TO THE OTHER PLAYER/SPECTATORS WHEN THE ACTIVE PLAYER CANCELS HIS/HER CLICK
+	socket.on('cancel', function(msg){
+		console.log('cancel ' + msg);
+		cancel_function.call("");
 	});
 	 
 	 
@@ -272,6 +278,8 @@ $(document).ready(function(){
 		}
 		
 		$( ".chat-button").addClass("flash-button");
+		$( ".dropbtn").addClass("flash-button");
+		$(window).scrollTo("#chat-button");
 	});
 	
 	socket.on('global chat message', function(msg){
@@ -787,7 +795,7 @@ $(document).ready(function(){
 		$(".popup-bck").css("display","block");
 		
 		$( ".chat-button").removeClass("flash-button" );
-
+		$( ".dropbtn").removeClass("flash-button" );
 	});
 	
 	$(document).on('click', ".chat-close", function(){
@@ -825,7 +833,6 @@ $(document).ready(function(){
 	//Adds the WHITE_PIECE/BLACK_PIECE class to squares that have chess pieces o
 	$("div").each( function()
 	{
-		console.log("Enters here");
 		if ($(this).text() == String.fromCharCode(9812) || $(this).text() == String.fromCharCode(9813) || $(this).text() == String.fromCharCode(9814)|| $(this).text() == String.fromCharCode(9815) || $(this).text() == String.fromCharCode(9816) || $(this).text() == String.fromCharCode(9817))
 		{
 			$(this).addClass("WHITE_PIECE");
@@ -850,7 +857,7 @@ $(document).ready(function(){
 		
 			if(!checkmate)
 			{
-				if(	(current_player == 0 && username === player_one) || (current_player == 1 && username === player_two)	)
+				if(	(current_player == 0 && username === player_one) || (current_player == 1 && username === player_two) || x =="transmit")
 				{
 					//clicked = true;
 					//alert("Current player is : " + current_player);
@@ -862,9 +869,10 @@ $(document).ready(function(){
 					//clicked_square = $(this).attr('id');
 					clicked_square = $(this).children(":first").attr('id');
 					
-
-					socket.emit('update clicked square', (getCookie("session_details").concat(":")).concat(current_user.concat(":").concat(clicked_square)));
-					
+					if(x != "transmit")
+					{
+						socket.emit('update clicked square', (getCookie("session_details").concat(":")).concat(current_user.concat(":").concat(clicked_square)));
+					}
 					
 					var clicked_possible_move = false;
 					
@@ -874,7 +882,7 @@ $(document).ready(function(){
 						{
 							if(move_squares[i] == clicked_square)
 							{
-								console.log("HIT A MOVEBOX!");
+								//console.log("HIT A MOVEBOX!");
 								clicked_possible_move = true;
 								destination_square = move_squares[i];
 								
@@ -892,7 +900,7 @@ $(document).ready(function(){
 								
 								break;
 							}
-							console.log("ELSE EMPTY SQUARE: " + move_squares[i]);
+							//console.log("ELSE EMPTY SQUARE: " + move_squares[i]);
 						}
 						
 					}
@@ -902,7 +910,7 @@ $(document).ready(function(){
 					
 					if(!clicked_possible_move)
 					{
-						console.log("ENTERS !CLICKED POSSIBLE MOVE");
+						//console.log("ENTERS !CLICKED POSSIBLE MOVE");
 						//Removes blue highlight for previously selected square
 						remove_highlights("blue", move_squares);
 						
@@ -1196,7 +1204,7 @@ $(document).ready(function(){
 				
 				var start_concat = array[0].toString().concat(array[1].toString()); 
 				console.log(start_concat);
-				click_square.call(document.getElementById(start_concat));
+				click_square.call(document.getElementById(start_concat).parentElement);
 				
 			}
 			
@@ -1221,7 +1229,7 @@ $(document).ready(function(){
 				
 				var destination_concat = array[0].toString().concat(array[1].toString()); 
 				console.log(destination_concat);
-				click_square.call(document.getElementById(destination_concat));
+				click_square.call(document.getElementById(destination_concat).parentElement);
 			}
 		}
 	);
@@ -1364,22 +1372,28 @@ $(document).ready(function(){
 
 	);
 	
-	$(document).on('click',"#cancel_button",function()
-	{
-				//document.getElementById('system_message').innerHTML = "System Message: UNIT IS SELECTED " + unit_is_selected;
-				
-				document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
-							
-				document.getElementById('possible_moves').innerHTML = '';
+	$(document).on('click',"#cancel_button",function(){
+		cancel_function.call("");	
+	});	
+	
+	var cancel_function = function(x){
+		//document.getElementById('system_message').innerHTML = "System Message: UNIT IS SELECTED " + unit_is_selected;
+		
+		document.getElementById('selected_unit').innerHTML = 'Selected Unit: ';
+					
+		document.getElementById('possible_moves').innerHTML = '';
 
-				document.getElementById("move_to").innerHTML = "Move To: ";
-				
-				unit_is_selected = false;
-				selected_unit = "";
+		document.getElementById("move_to").innerHTML = "Move To: ";
+		
+		var to_send = getCookie("session_details").concat(":").concat(getCookie("login_cookie"));
+		
+		socket.emit('cancel', to_send);
+		
+		unit_is_selected = false;
+		selected_unit = "";
 
-				remove_highlights("all", "");
-		}
-	);	
+		remove_highlights("all", "");
+	};
 });
 
 	function HELLO() {

@@ -16,22 +16,40 @@
 	</header>
 	
 	<body >
-		<div class="login-form">
-			<form action=""  name="login-form">
-			  <input id="username" autocomplete="off" placeholder="Username"/>
-			  <input type="password" id="password" autocomplete="off" placeholder="Password" />
-			  <button type="submit" name="login-button" class="login-page-button green-login" value="1" >Login</button>
-			  <button type="submit" name="register-button" class="login-page-button" value="2">Register</button>
-			  
-			  <div id="system-message">Alerts</div>
-			</form>
+		<div class="container">
+			<div class="login-choose-nav">
+				<ul>
+					<li id="login-register-button" class="selected-tab">Login/Register</li><!--
+					--><li id="login-global-chat-button">Global Chat</li>
+				</ul>
+			</div>
 			
-			<!--
-			<div id="login-button" class="login-page-button green-login">Login</div>
-			<div id="register-button" class="login-page-button">Register</div>
-			-->
-		</div>	
 			
+				<div class="login-form">
+					<form action=""  name="login-form">
+					  <input id="username" autocomplete="off" placeholder="Username"/>
+					  <input type="password" id="password" autocomplete="off" placeholder="Password" />
+					  <button type="submit" name="login-button" class="login-page-button green-login" value="1" >Login</button>
+					  <button type="submit" name="register-button" class="login-page-button" value="2">Register</button>
+					  
+					  <div id="system-message">Alerts</div>
+					</form>
+					
+					<!--
+					<div id="login-button" class="login-page-button green-login">Login</div>
+					<div id="register-button" class="login-page-button">Register</div>
+					-->
+				</div>	
+
+				<div id="chat-tab" class="grey-bg">	
+					<div class="append-chat-here-global" id="append-chat-here-global">
+					</div>
+					
+					<form action="" name="chat-form">
+						<input id="login-name-input" autocomplete="off" placeholder="Username"/><input id="login-chat-input" autocomplete="off" placeholder="Message"/><button class="login-chat-send-button">Send</button>
+					</form>
+				</div>
+		</div>		
 	</body>
 
 </html>

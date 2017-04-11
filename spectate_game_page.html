@@ -8,6 +8,7 @@
 		<script type="text/javascript" src="public/js/jquery-3.1.0.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="public/js/spectate_game_page.js"></script>
+		<script src="node_modules\jquery.scrollto\jquery.scrollTo.js"></script>
 		<title>Chess</title>
 	</head>
 
@@ -95,96 +96,98 @@
 		</div>	
 		
 		<div id="board" class="board">
-		
-			<div class="label_top top-left"></div>
-			<div class="label_top no-left-border">A</div>
-			<div class="label_top">B</div>
-			<div class="label_top">C</div>
-			<div class="label_top">D</div>
-			<div class="label_top">E</div>
-			<div class="label_top">F</div>
-			<div class="label_top">G</div>
-			<div class="label_top top-right">H</div>
-		
-			<div class="label_left">8</div>
-			<div class="white" id="8A">&#9820</div>
-			<div class="black" id="8B">&#9822</div>
-			<div class="white" id="8C">&#9821</div>
-			<div class="black" id="8D">&#9819</div>
-			<div class="white" id="8E">&#9818</div>
-			<div class="black" id="8F">&#9821</div>
-			<div class="white" id="8G">&#9822</div>
-			<div class="black" id="8H">&#9820</div>
+			<div class="upshift">
+				<div class="label_top top-left"><div class="text"></div></div>
+				<div class="label_top no-left-border"><div class="text">A</div></div>
+				<div class="label_top"><div class="text">B</div></div>
+				<div class="label_top"><div class="text">C</div></div>
+				<div class="label_top"><div class="text">D</div></div>
+				<div class="label_top"><div class="text">E</div></div>
+				<div class="label_top"><div class="text">F</div></div>
+				<div class="label_top"><div class="text">G</div></div>
+				<div class="label_top top-right"><div class="text">H</div></div>
 			
-			<div class="label_left">7</div>
-			<div class="black" id="7A">&#9823</div>
-			<div class="white" id="7B">&#9823</div>
-			<div class="black" id="7C">&#9823</div>
-			<div class="white" id="7D">&#9823</div>
-			<div class="black" id="7E">&#9823</div>
-			<div class="white" id="7F">&#9823</div>
-			<div class="black" id="7G">&#9823</div>
-			<div class="white" id="7H">&#9823</div>
-			
-			<div class="label_left">6</div>
-			<div class="white" id="6A"></div>
-			<div class="black" id="6B">&#9817</div>
-			<div class="white" id="6C">&#9817</div>
-			<div class="black" id="6D">&#9823</div>
-			<div class="white" id="6E"></div>
-			<div class="black" id="6F"></div>
-			<div class="white" id="6G"></div>
-			<div class="black" id="6H"></div>
-			
-			<div class="label_left">5</div>
-			<div class="black" id="5A"></div>
-			<div class="white" id="5B"></div>
-			<div class="black" id="5C">&#9812</div>
-			<div class="white" id="5D">&#9818</div>
-			<div class="black" id="5E"></div>
-			<div class="white" id="5F">♗</div>
-			<div class="black" id="5G"></div>
-			<div class="white" id="5H"></div>
-			
-			<div class="label_left">4</div>
-			<div class="white" id="4A"></div>
-			<div class="black" id="4B"></div>
-			<div class="white" id="4C">&#9820</div>
-			<div class="black" id="4D">♝</div>
-			<div class="white" id="4E">♘</div>
-			<div class="black" id="4F">♛</div>
-			<div class="white" id="4G">♕</div>
-			<div class="black" id="4H"></div>
-			
-			<div class="label_left">3</div>
-			<div class="black" id="3A"></div>
-			<div class="white" id="3B"></div>
-			<div class="black" id="3C"></div>
-			<div class="white" id="3D"></div>
-			<div class="black" id="3E"></div>
-			<div class="white" id="3F"></div>
-			<div class="black" id="3G"></div>
-			<div class="white" id="3H"></div>
-			
-			<div class="label_left">2</div>
-			<div class="white" id="2A">&#9817</div>
-			<div class="black" id="2B">&#9817</div>
-			<div class="white" id="2C">&#9817</div>
-			<div class="black" id="2D">&#9817</div>
-			<div class="white" id="2E">&#9817</div>
-			<div class="black" id="2F">&#9817</div>
-			<div class="white" id="2G">&#9817</div>
-			<div class="black" id="2H">&#9817</div>
-			
-			<div class="label_left bottom-left">1</div>
-			<div class="black" id="1A">&#9814</div>
-			<div class="white" id="1B">&#9816</div>
-			<div class="black" id="1C">&#9815</div>
-			<div class="white" id="1D">&#9813</div>
-			<div class="black" id="1E">&#9812</div>
-			<div class="white" id="1F">&#9815</div>
-			<div class="black" id="1G">&#9816</div>
-			<div class="white bottom-right" id="1H">&#9814</div>
+				<div class="label_left"><div class="text">8</div></div>
+				<div class="white"><div id="8A" class="text">&#9820</div></div>
+				<div class="black"><div id="8B" class="text">&#9822</div></div>
+				<div class="white"><div id="8C" class="text">&#9821</div></div>
+				<div class="black"><div id="8D" class="text">&#9819</div></div>
+				<div class="white"><div id="8E" class="text">&#9818</div></div>
+				<div class="black"><div id="8F" class="text">&#9821</div></div>
+				<div class="white"><div id="8G" class="text">&#9822</div></div>
+				<div class="black"><div id="8H" class="text">&#9820</div></div>
+				
+				<div class="label_left"><div class="text">7</div></div>
+				<div class="black"><div id="7A" class="text">&#9823</div></div>
+				<div class="white"><div id="7B" class="text">&#9823</div></div>
+				<div class="black"><div id="7C" class="text">&#9823</div></div>
+				<div class="white"><div id="7D" class="text">&#9823</div></div>
+				<div class="black"><div id="7E" class="text">&#9823</div></div>
+				<div class="white"><div id="7F" class="text">&#9823</div></div>
+				<div class="black"><div id="7G" class="text">&#9823</div></div>
+				<div class="white"><div id="7H" class="text">&#9823</div></div>
+				
+				<div class="label_left"><div class="text">6</div></div>
+				<div class="white"><div id="6A" class="text"></div></div>
+				<div class="black"><div id="6B" class="text"></div></div>
+				<div class="white"><div id="6C" class="text"></div></div>
+				<div class="black"><div id="6D" class="text"></div></div>
+				<div class="white"><div id="6E" class="text"></div></div>
+				<div class="black"><div id="6F" class="text"></div></div>
+				<div class="white"><div id="6G" class="text"></div></div>
+				<div class="black"><div id="6H" class="text"></div></div>
+				
+				<div class="label_left"><div class="text">5</div></div>
+				<div class="black"><div id="5A" class="text"></div></div>
+				<div class="white"><div id="5B" class="text"></div></div>
+				<div class="black"><div id="5C" class="text"></div></div>
+				<div class="white"><div id="5D" class="text"></div></div>
+				<div class="black"><div id="5E" class="text"></div></div>
+				<div class="white"><div id="5F" class="text"></div></div>
+				<div class="black"><div id="5G" class="text"></div></div>
+				<div class="white"><div id="5H" class="text"></div></div>
+				
+				<div class="label_left"><div class="text">4</div></div>
+				<div class="white"><div id="4A" class="text"></div></div>
+				<div class="black"><div id="4B" class="text"></div></div>
+				<div class="white"><div id="4C" class="text"></div></div>
+				<div class="black"><div id="4D" class="text"></div></div>
+				<div class="white"><div id="4E" class="text"></div></div>
+				<div class="black"><div id="4F" class="text"></div></div>
+				<div class="white"><div id="4G" class="text"></div></div>
+				<div class="black"><div id="4H" class="text"></div></div>
+				
+				<div class="label_left"><div class="text">3</div></div>
+				<div class="black"><div id="3A" class="text"></div></div>
+				<div class="white"><div id="3B" class="text"></div></div>
+				<div class="black"><div id="3C" class="text"></div></div>
+				<div class="white"><div id="3D" class="text"></div></div>
+				<div class="black"><div id="3E" class="text"></div></div>
+				<div class="white"><div id="3F" class="text"></div></div>
+				<div class="black"><div id="3G" class="text"></div></div>
+				<div class="white"><div id="3H" class="text"></div></div>
+				
+				<div class="label_left"><div class="text">2</div></div>
+				<div class="white"><div id="2A" class="text">&#9817</div></div>
+				<div class="black"><div id="2B" class="text">&#9817</div></div>
+				<div class="white"><div id="2C" class="text">&#9817</div></div>
+				<div class="black"><div id="2D" class="text">&#9817</div></div>
+				<div class="white"><div id="2E" class="text">&#9817</div></div>
+				<div class="black"><div id="2F" class="text">&#9817</div></div>
+				<div class="white"><div id="2G" class="text">&#9817</div></div>
+				<div class="black"><div id="2H" class="text">&#9817</div></div>
+				
+				<div class="label_left"><div class="text">1</div></div>
+				<div class="black"><div id="1A" class="text">&#9814</div></div>
+				<div class="white"><div id="1B" class="text">&#9816</div></div>
+				<div class="black"><div id="1C" class="text">&#9815</div></div>
+				<div class="white"><div id="1D" class="text">&#9813</div></div>
+				<div class="black"><div id="1E" class="text">&#9812</div></div>
+				<div class="white"><div id="1F" class="text">&#9815</div></div>
+				<div class="black"><div id="1G" class="text">&#9816</div></div>
+				<div class="white bottom-right"><div id="1H" class="text">&#9814</div></div>
+				
+			</div>
 		</div>
 		
 		<div id="pop_up" class="pop_up">
@@ -193,17 +196,15 @@
 					<span class = "close">❌</span>
 				</div><!--
 				
-				--><div class="table-nav">
-					<ul>
-						<li class="col-one-third" id="info-tab">Info</li><!--
-					
-					--><li class="col-one-third" id="pieces-captured-tab">Pieces Captured</li><!--
-					
-					--><li class="col-one-third" id="log-tab">Logs</li>
-					</ul>
-				</div>
+				--><div class="table-nav"><!--
+					--><ul><!--
+							--><li class="col-one-third" id="info-tab">Info</li><!--
+							--><li class="col-one-third" id="pieces-captured-tab">Pieces Captured</li><!--
+							--><li class="col-one-third" id="log-tab">Logs</li><!--
+					--></ul><!--
+				--></div><!--
 				
-				<div class = "table-content">
+				--><div class = "table-content">
 					<div id="pop_up_info">
 							<div id="time_start"></div>
 							<div id="time"></div>
@@ -220,10 +221,9 @@
 							<br>
 							<div id="game_message" >Game Message: </div>
 							<div id="system_message" >System Message: </div>
-					</div>
-					
-					<div id="pieces-captured">
-						<div class="col-half black-text">
+					</div><!--
+					--><div id="pieces-captured">
+						<div class="col-half">
 							<table>
 								<tr>
 									<th>White Pieces</th>
@@ -255,8 +255,7 @@
 								</tr>					
 							</table>
 						</div><!--
-						
-					--><div class="col-half black-text">
+					--><div class="col-half">
 							<table>
 								<tr>
 									<th>Black Pieces</th>
@@ -288,18 +287,13 @@
 								</tr>					
 							</table>
 						</div>
-					</div>
-					
-					<div id="logs">
-
+					</div><!--
+					--><div id="logs">
 						<div id="log-area">
 						</div>
-						
-					</div>
-					
-				</div>
-				<!--FOOTER-->
-				<div class="table-footer"> 
+					</div><!--
+				--></div><!--
+				--><div class="table-footer"> 
 				</div>
 			</div>
 		</div>
