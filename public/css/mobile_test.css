@@ -1484,9 +1484,9 @@ input[id="login-chat-input"]
 .login-choose-nav ul li:hover{
 	font-weight: bold;
 	border-bottom: 2px solid  linear-gradient(180deg, rgba(111,170,222,1) 0%, rgba(116,177,232,1) 100%);
-	color: linear-gradient(180deg, rgba(111,170,222,1) 0%, rgba(116,177,232,1) 100%);
+	color: #fff;
 	background: #74b1e8;
-	background: #fff; /* w3c */
+	background: linear-gradient(180deg, rgba(111,170,222,1) 0%, rgba(116,177,232,1) 100%);; /* w3c */
 }
 
 .login-choose-nav ul li:first-child{
