@@ -27,3 +27,8 @@ Update 2 - 11/04/2017:
 TO BE ADDED IN THE FUTURE:
 > Direct messages to users (besides global and match private chat)
 > Password reset option (registration will need to be overhauled, will require users to enter emails)
+
+-------------------
+BUGS
+
+> Allows access for a split second even without a login cookie
